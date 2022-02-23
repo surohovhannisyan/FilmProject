@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
-
+import React, { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Card, Form, Input, Button, Typography } from 'antd';
+
+import AuthContext from '../Store/auth-context';
 
 import './Login.scss';
 
@@ -16,6 +18,9 @@ function Login() {
     status: true,
   });
 
+  const authCtx = useContext(AuthContext);
+  const history = useNavigate();
+
   const { Meta } = Card;
 
   const userChangeHandler = (e) => {
@@ -25,7 +30,78 @@ function Login() {
     setPass(e.target.value);
   };
   const submitHandler = () => {
-    console.log(username, pass);
+    setUsernam('');
+    setPass('');
+    if (logReg.status === false) {
+      fetch(
+        'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBRegmu6l6G00JTkDtLcmhD97rD2NBg2cU',
+        {
+          method: 'POST',
+          body: JSON.stringify({
+            email: username,
+            password: pass,
+            returnSecueToken: true,
+          }),
+          headers: {
+            'Content-type': 'application/json',
+          },
+        }
+      )
+        .then((res) => {
+          if (res.ok) {
+            return res.json();
+          } else {
+            return res.json().then(() => {
+              const errorMessage = 'Authentication failed';
+              throw new Error(errorMessage);
+            });
+          }
+        })
+        .then((data) => {
+          console.log(data);
+          console.log(data.idToken);
+          alert('Successfully signed up');
+        })
+        .catch((err) => {
+          alert(err.message);
+        });
+    } else {
+      fetch(
+        'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBRegmu6l6G00JTkDtLcmhD97rD2NBg2cU',
+        {
+          method: 'POST',
+          body: JSON.stringify({
+            email: username,
+            password: pass,
+            returnSecueToken: true,
+          }),
+          headers: {
+            'Content-type': 'application/json',
+          },
+        }
+      )
+        .then((res) => {
+          if (res.ok) {
+            return res.json();
+          } else {
+            return res.json().then(() => {
+              const errorMessage = 'Authentication failed';
+              throw new Error(errorMessage);
+            });
+          }
+        })
+        .then((data) => {
+          console.log(data);
+          console.log(data.idToken);
+          alert('Welcome ' + data.email);
+          authCtx.login(data.idToken);
+          console.log(authCtx);
+          history('/films');
+        })
+        .catch((err) => {
+          alert(err.message);
+        });
+    }
   };
   const changeHandler = () => {
     setLogReg({
@@ -48,7 +124,6 @@ function Login() {
     <div className="login-root">
       <Card className="login-card">
         <Meta title={logReg.title} />
-        <br />
         <Form>
           <label>E-Mail</label> <br />
           <Input
@@ -56,10 +131,8 @@ function Login() {
             onChange={userChangeHandler}
             className="main-input-one"
             type="email"
-          />{' '}
-          <br />
-          <br />
-          <labell>Password</labell> <br />
+          />
+          <label>Password</label> <br />
           <Input
             className="main-input-two"
             value={pass}
@@ -67,13 +140,10 @@ function Login() {
             type="password"
           />
         </Form>
-        <br />
         <Button className="log-btn" onClick={submitHandler}>
           <Text>{logReg.btnValue}</Text>
         </Button>
-        <br />
-        <br />
-        <Meta title={logReg.titleTwo} onClick={changeHandler} className="meta-2" />
+        <Meta title={logReg.titleTwo} onClick={changeHandler} className="meta-two" />
       </Card>
     </div>
   );
