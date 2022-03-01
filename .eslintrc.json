@@ -29,6 +29,8 @@
     ],
     "rules": {
         "require-jsdoc": "off",
+        "react/prop-types": "off",
+        "no-unused-vars": 0,
         "@typescript-eslint/ban-ts-comment": "off",
         "@typescript-eslint/ban-types": "off",
         "prettier/prettier": [

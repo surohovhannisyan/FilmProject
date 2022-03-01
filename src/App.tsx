@@ -5,7 +5,7 @@ import Navbar from './components/Navbar/Navbar';
 import Home from './components/Home/Home';
 import Films from './components/Films/Films';
 import Login from './components/Login/Login';
-import Footer from './components/Footer/Footer';
+import PrivateRoute from './components/Hooks/PirvateRoutes';
 
 import 'antd/dist/antd.css';
 import './App.css';
@@ -13,14 +13,12 @@ import './App.css';
 function App() {
   return (
     <Router>
-      <Navbar /> <br />
+      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/films" element={<Films />} />
+        <Route path="/films" element={<PrivateRoute component={Films} />} />
         <Route path="/login" element={<Login />} />
-      </Routes>{' '}
-      <br /> <br />
-      <Footer />
+      </Routes>
     </Router>
   );
 }

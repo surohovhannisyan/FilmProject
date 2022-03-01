@@ -4,10 +4,22 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import { AuthContextProvider } from '../src/components/Store/auth-context';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import rootReducer from './Reducers';
+import thunk from 'redux-thunk';
+
+const store = createStore(rootReducer, applyMiddleware(thunk));
+
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Provider store={store}>
+    <AuthContextProvider>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </AuthContextProvider>
+  </Provider>,
   document.getElementById('root')
 );
 
