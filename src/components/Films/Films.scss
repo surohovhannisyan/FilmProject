@@ -1,19 +1,32 @@
 .films-root {
-  border: 1px solid red;
   margin: 5px auto;
   padding: 15px;
+
   .search-sect {
     width: 100%;
     margin: 5px auto;
     padding: 5px;
   }
-  .search-sect label,
+
+  .filmSearch{
+    width: 25%;
+  }
+
+  label,
   input,
   button {
-    display: block;
-    margin: 5px auto;
+    margin: 5px ;
     text-align: center;
   }
+
+  .selectMain{
+    margin: 5px;
+  }
+
+  .search-sect{
+    display: flex;
+  }
+
   .film-main {
     width: 50%;
     border: 1px solid red;
@@ -21,12 +34,15 @@
     padding: 5px;
     display: flex;
   }
+
   .film-main div{
       width: 50%;
   }
+
   .film-backdrop {
     width: 80%;
   }
+
   .film-sect{
       display: flex;
   }

@@ -1,10 +1,11 @@
 import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Card, Form, Input, Button, Typography } from 'antd';
+import { Card, Form, Input, Button, Typography, notification } from 'antd';
 
 import AuthContext from '../Store/auth-context';
 
 import './Login.scss';
+import 'antd/dist/antd.css';
 
 const { Text } = Typography;
 
@@ -52,18 +53,26 @@ function Login() {
             return res.json();
           } else {
             return res.json().then(() => {
-              const errorMessage = 'Authentication failed';
-              throw new Error(errorMessage);
+              notification.open({
+                message: 'Authentication Failed',
+                description: 'Now valid E-mail or Password',
+              });
             });
           }
         })
         .then((data) => {
           console.log(data);
           console.log(data.idToken);
-          alert('Successfully signed up');
+          notification.open({
+            message: 'Successfully Signed Up ',
+            description: 'Welcome to our project',
+          });
         })
         .catch((err) => {
-          alert(err.message);
+          notification.open({
+            message: err.message,
+            description: 'Something went wrong',
+          });
         });
     } else {
       fetch(
@@ -85,21 +94,29 @@ function Login() {
             return res.json();
           } else {
             return res.json().then(() => {
-              const errorMessage = 'Authentication failed';
-              throw new Error(errorMessage);
+              notification.open({
+                message: 'Authentication Failed',
+                description: 'Wrong Username or Wrong Password',
+              });
             });
           }
         })
         .then((data) => {
           console.log(data);
           console.log(data.idToken);
-          alert('Welcome ' + data.email);
+          notification.open({
+            message: 'Welcome ' + data.email,
+            description: 'Successfully Signed in',
+          });
           authCtx.login(data.idToken);
           console.log(authCtx);
           history('/films');
         })
         .catch((err) => {
-          alert(err.message);
+          notification.open({
+            message: err.message,
+            description: 'Wrong Username or Wrong Password',
+          });
         });
     }
   };

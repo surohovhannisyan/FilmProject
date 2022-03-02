@@ -1,10 +1,12 @@
-import React, { useEffect, FC } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getFilmData } from '../Redux/Action';
-import { useState } from 'react';
+import { RootState } from '../../Reducers';
+import { Input, Button, Select } from 'antd';
+import { SearchOutlined } from '@ant-design/icons';
 
 import './Films.scss';
-import { RootState } from '../../Reducers';
+import 'antd/dist/antd.css';
 
 export interface IItems {
   adult: boolean;
@@ -25,21 +27,41 @@ export interface IItems {
 
 const Films = () => {
   const data = useSelector((state: RootState) => state.film);
-  console.log(data);
+  const { Option } = Select;
   const [title, setTitle] = useState('');
+  const [page, setPage] = useState<number>(1);
+
+  const handleChange = (value: number) => {
+    setPage(value);
+  };
+
   const dispatch = useDispatch();
   const getFilmInfo = () => {
     dispatch(getFilmData(title));
   };
+
   useEffect(() => {
     getFilmInfo();
   }, [title]);
+
   return (
     <div className="films-root">
       <div className="search-sect">
-        <label>Search</label>
-        <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
-        <button>Search</button>
+        <Input
+          type="text"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          className="filmSearch"
+          placeholder="Film Name"
+        />
+        <Button type="primary" shape="circle" icon={<SearchOutlined />} />
+        <Select value={page} style={{ width: 120 }} className="selectMain" onChange={handleChange}>
+          <Option value="1">Page 1</Option>
+          <Option value="2">Page 2</Option>
+          <Option value="3">Page 3</Option>
+          <Option value="4">Page 4</Option>
+          <Option value="5">Page 5</Option>
+        </Select>
       </div>
       {data.data &&
         data.data?.map((item: IItems) => (
