@@ -3,12 +3,6 @@ import { IItems } from '../Films/Films';
 import { GET_FILM_DATA, GET_FILM_DATA_FAILED, GET_FILM_DATA_REQUEST } from './ActionType';
 import { IState } from './Reducer';
 import { getFilmService } from './Services';
-// interface IData {
-//   page: number;
-//   results: Array<object>;
-//   total_pages: number;
-//   total_results: number;
-// }
 
 export const getFilmData = (title: string) => {
   return (dispatch: any) => {
