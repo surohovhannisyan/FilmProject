@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+
 import { Menu, Typography } from 'antd';
 import {
   HomeOutlined,
@@ -6,45 +7,48 @@ import {
   LogoutOutlined,
   LoginOutlined,
 } from '@ant-design/icons';
-import { Link, Navigate } from 'react-router-dom';
-import PrivateRoutes from '../Hooks/PirvateRoutes';
+import { Col } from 'antd';
+import { Link, useHistory } from 'react-router-dom';
+
 import AuthContext from '../Store/auth-context';
-import { useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 const MenuItem = Menu.Item;
 const { Text } = Typography;
 
 function Navbar() {
   const authCtx = useContext(AuthContext);
-  const history = useNavigate();
+  const isLoggedIn = authCtx.isLoggedIn;
+
+  const history = useHistory();
+
   const logoutHandler = (): void => {
     authCtx.logout();
-    history('/login');
+    history.push('/login');
   };
+
   return (
-    <div className="navbar-root">
+    <Col className="navbar-root">
       <Menu mode="horizontal">
         <Link to="/">
           <MenuItem icon={<HomeOutlined />}>
             <Text>Home</Text>
           </MenuItem>
         </Link>
-        {authCtx.isLoggedIn && (
+        {isLoggedIn && (
           <Link to="/films">
             <MenuItem icon={<OrderedListOutlined />}>
               <Text>Films</Text>
             </MenuItem>
           </Link>
         )}
-        {!authCtx.isLoggedIn && (
+        {!isLoggedIn && (
           <Link to="/login">
             <MenuItem icon={<LoginOutlined />}>
               <Text>Log in</Text>
             </MenuItem>
           </Link>
         )}
-        {authCtx.isLoggedIn && (
+        {isLoggedIn && (
           <Link to="/" onClick={logoutHandler}>
             <MenuItem icon={<LogoutOutlined />}>
               <Text>Log out</Text>
@@ -52,7 +56,7 @@ function Navbar() {
           </Link>
         )}
       </Menu>
-    </div>
+    </Col>
   );
 }
 

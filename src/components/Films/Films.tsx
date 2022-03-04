@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { SetStateAction, useEffect, useState } from 'react';
+
 import { useDispatch, useSelector } from 'react-redux';
+
 import { getFilmData } from '../Redux/Action';
 import { RootState } from '../../Reducers';
-import { Input } from 'antd';
-// import { SearchOutlined } from '@ant-design/icons';
-import { Table, Tag, Space } from 'antd';
+import { Select, Table, Col } from 'antd';
+import { columns } from '../Config/FilmsTable.config';
+import { genres } from '../Config/FilmsGenres.config';
 
 import './Films.scss';
 import 'antd/dist/antd.css';
@@ -25,59 +27,50 @@ export interface IItems {
   vote_average: number;
   vote_count: number;
 }
-interface Column {
-  title: string;
-  dataIndex: string;
-  key: string;
-}
+
 const Films = () => {
   const data = useSelector((state: RootState) => state.film).data;
   const [title, setTitle] = useState('');
+  const [page, setPage] = useState(1);
+  const [genre, setGenre] = useState(28);
+
+  const { Option } = Select;
 
   const dispatch = useDispatch();
+
   const getFilmInfo = () => {
-    dispatch(getFilmData(title));
+    dispatch(getFilmData(genre));
   };
 
   useEffect(() => {
     getFilmInfo();
-  }, [title]);
+  }, [genre]);
 
-  const columns = [
-    { title: 'Original Title', dataIndex: 'original_title', key: 'original_title' },
-    { title: 'Original Language', dataIndex: 'original_language', key: 'original_language' },
-    { title: 'Release Date', dataIndex: 'release_date', key: 'release_date' },
-    { title: 'Vote Average', dataIndex: 'vote_average', key: 'vote_average' },
-    { title: 'Overview', dataIndex: 'overview', key: 'overview' },
-    {
-      title: 'Poster',
-      dataIndex: 'poster_path',
-      key: 'poster_path',
-      render: (Poster: any) => {
-        return <img src={`https://image.tmdb.org/t/p/w500/${Poster}`} style={{ width: '250px' }} />;
-      },
-    },
-  ];
-  const dataArr: Array<{}> = [];
+  const dataArr: Object[] = [];
+
   data?.map((item) => {
     dataArr.push(item);
   });
 
+  const selectChangeHandler = (value: number) => {
+    setGenre(value);
+  };
+
   return (
-    <div className="films-root">
-      <div className="search-sect">
-        <Input
-          type="text"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          className="filmSearch"
-          placeholder="Film Name"
-        />
-      </div>
-      <div className="filmTable">
+    <Col className="films-root">
+      <Col className="search-sect">
+        <Select onChange={selectChangeHandler} className="selectGenre">
+          {genres.map((item) => (
+            <Option key={item.key} value={item.key}>
+              {item.genre_name}
+            </Option>
+          ))}
+        </Select>
+      </Col>
+      <Col className="filmTable">
         <Table columns={columns} dataSource={dataArr} />
-      </div>
-    </div>
+      </Col>
+    </Col>
   );
 };
 

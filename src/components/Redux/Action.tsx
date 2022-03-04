@@ -1,15 +1,12 @@
-import { AxiosResponse } from 'axios';
 import { IItems } from '../Films/Films';
 import { GET_FILM_DATA, GET_FILM_DATA_FAILED, GET_FILM_DATA_REQUEST } from './ActionType';
-import { IState } from './Reducer';
 import { getFilmService } from './Services';
 
-export const getFilmData = (title: string) => {
+export const getFilmData = (genre: number) => {
   return (dispatch: any) => {
     dispatch(request());
-    getFilmService(title)
+    getFilmService(genre)
       .then((response) => {
-        console.log('response', response);
         dispatch(success(response));
       })
       .catch((error) => {
@@ -22,12 +19,14 @@ export const getFilmData = (title: string) => {
       type: GET_FILM_DATA_REQUEST,
     };
   }
+
   function success(data: IItems[]) {
     return {
       type: GET_FILM_DATA,
       payload: data,
     };
   }
+
   function failure(error: string) {
     return {
       type: GET_FILM_DATA_FAILED,

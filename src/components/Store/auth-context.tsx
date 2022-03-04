@@ -1,14 +1,16 @@
-import React, { ReactChild } from 'react';
-import { useState } from 'react';
-interface ContextValueInterface {
+import React, { ReactChild, useState } from 'react';
+
+export interface ContextValueInterface {
   token: string | null;
   isLoggedIn: boolean;
   login: (token: string) => void;
   logout: () => void;
 }
+
 interface AuthProps {
   children: ReactChild;
 }
+
 const AuthContext = React.createContext<ContextValueInterface>({
   token: '',
   isLoggedIn: false,
@@ -42,6 +44,7 @@ export const AuthContextProvider = (props: AuthProps) => {
     login: loginHandler,
     logout: logoutHandler,
   };
+
   return <AuthContext.Provider value={contextValue}>{props.children}</AuthContext.Provider>;
 };
 

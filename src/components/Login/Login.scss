@@ -2,34 +2,40 @@
   padding: 10px;
   width: 50%;
   margin: auto;
-}
-.login-root {
+
   .login-card {
     width: 100%;
     text-align: center;
     background-color: rgb(238, 248, 252);
   }
-  label{
+
+  .mailLabel,
+  .passLabel {
     display: block;
   }
+
   .main-input-one {
     width: 70%;
     box-shadow: 1px 1px 3px 3px rgb(165, 231, 252);
     margin: 5px auto;
   }
+
   .main-input-two {
     width: 70%;
     box-shadow: 1px 1px 3px 3px rgb(165, 231, 252);
   }
+
   .log-btn {
     width: 35%;
     background-color: rgb(184, 236, 252);
     box-shadow: 1px 1px 2px 3px rgb(148, 196, 211);
     margin: 10px;
   }
+
   .meta-two {
     text-decoration: underline;
   }
+
   .meta-two:hover {
     cursor: pointer;
   }

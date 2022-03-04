@@ -1,19 +1,17 @@
-import React, { FC, useContext } from 'react';
-import { Navigate } from 'react-router-dom';
+import React, { useContext } from 'react';
+
+import { Redirect, Route, RouteProps } from 'react-router-dom';
 import AuthContext from '../Store/auth-context';
 
-interface PropType {
-  component: React.FC;
+interface IProps extends RouteProps {
+  path: string;
 }
 
-const PrivateRoute: FC<PropType> = ({ component: Component }) => {
-  const authCtx = useContext(AuthContext);
-  const isLoggedIn = authCtx.isLoggedIn;
-  console.log(isLoggedIn);
+const PrivateRoute: React.FC<IProps> = ({ ...rest }) => {
+  const isLoggedIn = useContext(AuthContext).isLoggedIn;
 
-  if (isLoggedIn) {
-    return <Component />;
-  }
-  return <Navigate to="/login" />;
+  if (isLoggedIn == false) return <Redirect to="/login" />;
+  return <Route {...rest} />;
 };
+
 export default PrivateRoute;

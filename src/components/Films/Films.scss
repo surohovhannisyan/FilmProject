@@ -8,22 +8,22 @@
     padding: 5px;
   }
 
-  .filmSearch{
+  .filmSearch {
     width: 25%;
   }
 
   label,
   input,
   button {
-    margin: 5px ;
+    margin: 5px;
     text-align: center;
   }
 
-  .selectMain{
+  .selectMain {
     margin: 5px;
   }
 
-  .search-sect{
+  .search-sect {
     display: flex;
   }
 
@@ -35,15 +35,23 @@
     display: flex;
   }
 
-  .film-main div{
-      width: 50%;
+  .film-main div {
+    width: 50%;
   }
 
   .film-backdrop {
     width: 80%;
   }
 
-  .film-sect{
-      display: flex;
+  .film-sect {
+    display: flex;
+  }
+
+  .imgTable {
+    width: 100%;
+  }
+
+  .selectGenre {
+    width: 120px;
   }
 }
