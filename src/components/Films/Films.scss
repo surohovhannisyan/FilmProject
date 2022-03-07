@@ -23,10 +23,6 @@
     margin: 5px;
   }
 
-  .search-sect {
-    display: flex;
-  }
-
   .film-main {
     width: 50%;
     border: 1px solid red;
@@ -49,9 +45,18 @@
 
   .imgTable {
     width: 100%;
+    padding: 10px;
   }
 
   .selectGenre {
+    display: block;
     width: 120px;
+  }
+  .labelSearch {
+    display: block;
+    margin: 5px;
+  }
+  .input-sect {
+    width: 20%;
   }
 }

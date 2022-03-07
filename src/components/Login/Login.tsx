@@ -1,10 +1,11 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 
 import { useHistory } from 'react-router-dom';
-import { Card, Form, Input, Button, Typography, Col } from 'antd';
+import { Card, Form, Input, Button, Typography, Col, notification } from 'antd';
+import { signIn, signUp } from './LoginApiCall';
 
-import AuthContext from '../Store/auth-context';
-import { signInUpHandler } from './LoginApiCall';
+import { useAuth } from '../Hooks/useAuth';
 
 import './Login.scss';
 import 'antd/dist/antd.css';
@@ -12,17 +13,31 @@ import 'antd/dist/antd.css';
 const { Text } = Typography;
 const { Meta } = Card;
 
+interface IData {
+  email: string;
+  password: string;
+  idToken: string;
+  returnSecureToken: boolean;
+}
+
+interface ISignState {
+  title: string;
+  titleTwo: string;
+  btnValue: string;
+  status: boolean;
+}
+
 function Login() {
-  const [username, setUsernam] = useState('');
-  const [pass, setPass] = useState('');
-  const [signInUpState, setSignInUpState] = useState({
+  const [username, setUsernam] = useState<string>('');
+  const [pass, setPass] = useState<string>('');
+  const [signInUpState, setSignInUpState] = useState<ISignState>({
     title: 'Log-in',
     titleTwo: 'Register for first',
     btnValue: 'Log-in',
     status: true,
   });
 
-  const authCtx = useContext(AuthContext);
+  const authCtx = useAuth();
   const history = useHistory();
 
   const userChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -36,7 +51,11 @@ function Login() {
   const submitHandler = () => {
     setUsernam('');
     setPass('');
-    signInUpHandler(signInUpState, username, pass, authCtx, history);
+    if (signInUpState.status == false) {
+      signUp(username, pass);
+    } else {
+      signIn(username, pass, authCtx, history);
+    }
   };
 
   const changeHandler = () => {

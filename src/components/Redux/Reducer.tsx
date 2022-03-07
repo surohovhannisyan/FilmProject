@@ -1,4 +1,9 @@
-import { GET_FILM_DATA, GET_FILM_DATA_FAILED } from './ActionType';
+import {
+  GET_FILM_DATA,
+  GET_FILM_DATA_BY_QUERY,
+  GET_FILM_DATA_FAILED,
+  GET_FILM_DATA_BY_QUERY_FAILED,
+} from './ActionType';
 import { Reducer } from 'redux';
 import { IItems } from '../Films/Films';
 
@@ -22,6 +27,10 @@ const filmData: Reducer<IState, IAction> = (state, action) => {
     case GET_FILM_DATA:
       return { ...state, data: action.payload };
     case GET_FILM_DATA_FAILED:
+      return { ...state, error: action.payload };
+    case GET_FILM_DATA_BY_QUERY:
+      return { ...state, data: action.payload };
+    case GET_FILM_DATA_BY_QUERY_FAILED:
       return { ...state, error: action.payload };
     default:
       return { ...state };

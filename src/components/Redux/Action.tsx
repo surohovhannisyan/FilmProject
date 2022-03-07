@@ -1,35 +1,59 @@
 import { IItems } from '../Films/Films';
-import { GET_FILM_DATA, GET_FILM_DATA_FAILED, GET_FILM_DATA_REQUEST } from './ActionType';
-import { getFilmService } from './Services';
+import {
+  GET_FILM_DATA,
+  GET_FILM_DATA_FAILED,
+  GET_FILM_DATA_BY_QUERY,
+  GET_FILM_DATA_BY_QUERY_FAILED,
+} from './ActionType';
+import { getFilmByGenreService, getFilmByQueryService } from './Services';
 
-export const getFilmData = (genre: number) => {
+export const getFilmDataByGenre = (genre: number) => {
   return (dispatch: any) => {
-    dispatch(request());
-    getFilmService(genre)
+    getFilmByGenreService(genre)
       .then((response) => {
-        dispatch(success(response));
+        dispatch(getByGenre(response));
       })
       .catch((error) => {
-        dispatch(failure(error));
+        dispatch(getByGenreError(error));
       });
   };
 
-  function request() {
-    return {
-      type: GET_FILM_DATA_REQUEST,
-    };
-  }
-
-  function success(data: IItems[]) {
+  function getByGenre(data: IItems[]) {
     return {
       type: GET_FILM_DATA,
       payload: data,
     };
   }
 
-  function failure(error: string) {
+  function getByGenreError(error: string) {
     return {
       type: GET_FILM_DATA_FAILED,
+      payload: { data: null, error: error },
+    };
+  }
+};
+
+export const getFilmDataByQuery = (title: string) => {
+  return (dispatch: any) => {
+    getFilmByQueryService(title)
+      .then((response) => {
+        dispatch(getByQuery(response));
+      })
+      .catch((error) => {
+        dispatch(getByQueryError(error));
+      });
+  };
+
+  function getByQuery(data: IItems[]) {
+    return {
+      type: GET_FILM_DATA_BY_QUERY,
+      payload: data,
+    };
+  }
+
+  function getByQueryError(error: string) {
+    return {
+      type: GET_FILM_DATA_BY_QUERY_FAILED,
       payload: { data: null, error: error },
     };
   }

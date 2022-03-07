@@ -1,14 +1,14 @@
-import React, { useContext } from 'react';
+import React from 'react';
 
 import { Redirect, Route, RouteProps } from 'react-router-dom';
-import AuthContext from '../Store/auth-context';
+import { useAuth } from './useAuth';
 
 interface IProps extends RouteProps {
   path: string;
 }
 
 const PrivateRoute: React.FC<IProps> = ({ ...rest }) => {
-  const isLoggedIn = useContext(AuthContext).isLoggedIn;
+  const isLoggedIn = useAuth().isLoggedIn;
 
   if (isLoggedIn == false) return <Redirect to="/login" />;
   return <Route {...rest} />;

@@ -1,95 +1,61 @@
-import React, { useContext } from 'react';
+import React from 'react';
+import axios from 'axios';
 
-import { History, LocationState } from 'history';
 import { notification } from 'antd';
-
+import { History, LocationState } from 'history';
 import { ContextValueInterface } from '../Store/auth-context';
 
-interface ISignState {
-  title: string;
-  titleTwo: string;
-  btnValue: string;
-  status: boolean;
-}
+const signInURL =
+  'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBRegmu6l6G00JTkDtLcmhD97rD2NBg2cU';
 
-export const signInUpHandler = (
-  signInUpState: ISignState,
+const signUpURL =
+  'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBRegmu6l6G00JTkDtLcmhD97rD2NBg2cU';
+
+export const signIn = async (
   username: string,
   pass: string,
   authCtx: ContextValueInterface,
   history: History<LocationState>
 ) => {
-  if (signInUpState.status === false) {
-    fetch(
-      'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBRegmu6l6G00JTkDtLcmhD97rD2NBg2cU',
+  try {
+    const response = await axios.post(
+      signInURL,
+      { email: username, password: pass, returnSecureToken: true },
       {
-        method: 'POST',
-        body: JSON.stringify({
-          email: username,
-          password: pass,
-          returnSecueToken: true,
-        }),
-        headers: {
-          'Content-type': 'application/json',
-        },
+        headers: { 'Content-type': 'application/json' },
       }
-    )
-      .then(async (res) => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          await res.json();
-          notification.error({
-            message: 'Authentication Failed',
-            description: 'Not valid E-mail or Password',
-          });
-        }
-      })
-      .then((data) => {
-        notification.success({
-          message: 'Successfully Signed Up ',
-          description: 'Welcome to our project',
-        });
-      })
-      .catch((err) => {
-        notification.error({
-          message: err.message,
-          description: 'Something went wrong',
-        });
-      });
-  } else {
-    fetch(
-      'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBRegmu6l6G00JTkDtLcmhD97rD2NBg2cU',
+    );
+    notification.success({
+      message: `Welcome  ${response.data.email}`,
+      description: 'Successfully Signed in',
+    });
+    authCtx.login(response.data.idToken);
+    history.push('/films');
+  } catch (err) {
+    notification.error({
+      message: `Authentication failed`,
+      description: 'Wrong Username or Password',
+    });
+  }
+};
+
+export const signUp = async (username: string, pass: string) => {
+  try {
+    const response = await axios.post(
+      signUpURL,
+      { email: username, password: pass, returnSecureToken: true },
       {
-        method: 'POST',
-        body: JSON.stringify({
-          email: username,
-          password: pass,
-          returnSecueToken: true,
-        }),
-        headers: {
-          'Content-type': 'application/json',
-        },
+        headers: { 'Content-type': 'application/json' },
       }
-    )
-      .then(async (res) => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          await res.json();
-          notification.error({
-            message: 'Authentication Failed',
-            description: 'Wrong Username or Password',
-          });
-        }
-      })
-      .then((data) => {
-        notification.success({
-          message: `Welcome  ${data.email}`,
-          description: 'Successfully Signed in',
-        });
-        authCtx.login(data.idToken);
-        history.push('/films');
-      });
+    );
+    notification.success({
+      message: 'Successfully Signed Up ',
+      description: 'Welcome to our project',
+    });
+  } catch (err) {
+    notification.error({
+      message: `Authentication failed`,
+      description: 'Not valid E-mail or Password',
+    });
   }
 };

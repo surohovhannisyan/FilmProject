@@ -6,23 +6,23 @@ Project Status
 This project is currently in development. User can register and log in to their accounts, also can get some data but only partial data.
 
 *Installation and Setup Instructions*
-**Clone down this repository. You will need node and npm installed globally on your machine.**
+1. **Clone down this repository. You will need node and npm installed globally on your machine.**
 
 *Installation:*
 
-**npm install**
+2. **npm install**
 
 *To Run Test Suite:*
 
-**npm test**
+3. **npm test**
 
 *To Start Server:*
 
-**npm start**
+4. **npm start**
 
 *To Visit App:*
 
-**localhost:3000/ideas**
+5. **localhost:3000**
 
 ## Reflection
 What was the context for this project?

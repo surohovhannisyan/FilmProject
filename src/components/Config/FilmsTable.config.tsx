@@ -6,13 +6,12 @@ export const columns = [
   { title: 'Release Date', dataIndex: 'release_date', key: 'release_date' },
   { title: 'Vote Average', dataIndex: 'vote_average', key: 'vote_average' },
   { title: 'Overview', dataIndex: 'overview', key: 'overview', width: '30%' },
-  { title: 'Genres', dataIndex: 'genre_ids', key: 'genre_ids' },
   {
     title: 'Poster',
     dataIndex: 'poster_path',
     key: 'poster_path',
-    width: '30%',
-    render: (Poster: any) => {
+    width: '20%',
+    render: (Poster: string) => {
       return <img src={`https://image.tmdb.org/t/p/w500/${Poster}`} className="imgTable" />;
     },
   },

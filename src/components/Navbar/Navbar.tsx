@@ -1,22 +1,20 @@
-import React, { useContext } from 'react';
+import React from 'react';
 
-import { Menu, Typography } from 'antd';
+import { useAuth } from '../Hooks/useAuth';
+import { Menu, Typography, Col } from 'antd';
 import {
   HomeOutlined,
   OrderedListOutlined,
   LogoutOutlined,
   LoginOutlined,
 } from '@ant-design/icons';
-import { Col } from 'antd';
 import { Link, useHistory } from 'react-router-dom';
-
-import AuthContext from '../Store/auth-context';
 
 const MenuItem = Menu.Item;
 const { Text } = Typography;
 
 function Navbar() {
-  const authCtx = useContext(AuthContext);
+  const authCtx = useAuth();
   const isLoggedIn = authCtx.isLoggedIn;
 
   const history = useHistory();

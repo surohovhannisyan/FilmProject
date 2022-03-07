@@ -1,10 +1,10 @@
-import React, { SetStateAction, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import { getFilmData } from '../Redux/Action';
+import { getFilmDataByGenre, getFilmDataByQuery } from '../Redux/Action';
 import { RootState } from '../../Reducers';
-import { Select, Table, Col } from 'antd';
+import { Select, Table, Col, Input, Typography } from 'antd';
 import { columns } from '../Config/FilmsTable.config';
 import { genres } from '../Config/FilmsGenres.config';
 
@@ -28,23 +28,38 @@ export interface IItems {
   vote_count: number;
 }
 
+interface ISign {
+  title: string;
+  genre: number;
+}
+
+const { Text } = Typography;
+
 const Films = () => {
   const data = useSelector((state: RootState) => state.film).data;
-  const [title, setTitle] = useState('');
-  const [page, setPage] = useState(1);
-  const [genre, setGenre] = useState(28);
+  const [title, setTitle] = useState<string>('');
+  const [genre, setGenre] = useState<number>(16);
+  console.log(data);
 
   const { Option } = Select;
 
   const dispatch = useDispatch();
 
   const getFilmInfo = () => {
-    dispatch(getFilmData(genre));
+    dispatch(getFilmDataByGenre(genre));
+  };
+
+  const getFilmBySearch = () => {
+    dispatch(getFilmDataByQuery(title));
   };
 
   useEffect(() => {
     getFilmInfo();
   }, [genre]);
+
+  useEffect(() => {
+    getFilmBySearch();
+  }, [title]);
 
   const dataArr: Object[] = [];
 
@@ -54,12 +69,18 @@ const Films = () => {
 
   const selectChangeHandler = (value: number) => {
     setGenre(value);
+    setTitle('');
+  };
+
+  const changeInputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTitle(e.target.value);
   };
 
   return (
     <Col className="films-root">
       <Col className="search-sect">
-        <Select onChange={selectChangeHandler} className="selectGenre">
+        <h4 className="labelSelect">Select Genre</h4>
+        <Select onChange={selectChangeHandler} placeholder="Genres" className="selectGenre">
           {genres.map((item) => (
             <Option key={item.key} value={item.key}>
               {item.genre_name}
@@ -67,8 +88,12 @@ const Films = () => {
           ))}
         </Select>
       </Col>
+      <Col className="input-sect">
+        <h4 className="labelSearch">Search By Title </h4>
+        <Input type="text" value={title} onChange={changeInputHandler} placeholder="Type title" />
+      </Col>
       <Col className="filmTable">
-        <Table columns={columns} dataSource={dataArr} />
+        <Table columns={columns} dataSource={dataArr} className="tableMain" pagination={false} />
       </Col>
     </Col>
   );
