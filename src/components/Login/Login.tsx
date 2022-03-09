@@ -77,32 +77,34 @@ function Login() {
   };
 
   return (
-    <Col className="login-root">
-      <Card className="login-card">
-        <Meta title={signInUpState.title} />
-        <Form>
-          <Text className="mailLabel">E-Mail</Text>
-          <Input
-            value={username}
-            onChange={userChangeHandler}
-            className="main-input-one"
-            type="email"
-          />
-          <Text className="passLabel">Password</Text>
-          <Input
-            className="main-input-two"
-            value={pass}
-            onChange={passChangeHandler}
-            type="password"
-          />
-        </Form>
-        <Button className="log-btn" onClick={submitHandler}>
-          <Text>{signInUpState.btnValue}</Text>
-        </Button>
-        <Col onClick={changeHandler}>
-          <Meta title={signInUpState.titleTwo} className="meta-two" />
-        </Col>
-      </Card>
+    <Col className="loginBody">
+      <Col className="login-root">
+        <Card className="login-card">
+          <Meta title={signInUpState.title} />
+          <Form>
+            <Text className="mailLabel">E-Mail</Text>
+            <Input
+              value={username}
+              onChange={userChangeHandler}
+              className="main-input-one"
+              type="email"
+            />
+            <Text className="passLabel">Password</Text>
+            <Input
+              className="main-input-two"
+              value={pass}
+              onChange={passChangeHandler}
+              type="password"
+            />
+          </Form>
+          <Button className="log-btn" onClick={submitHandler}>
+            <Text>{signInUpState.btnValue}</Text>
+          </Button>
+          <Col onClick={changeHandler}>
+            <Meta title={signInUpState.titleTwo} className="meta-two" />
+          </Col>
+        </Card>
+      </Col>
     </Col>
   );
 }

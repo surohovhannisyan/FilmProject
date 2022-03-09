@@ -4,8 +4,69 @@ import {
   GET_FILM_DATA_FAILED,
   GET_FILM_DATA_BY_QUERY,
   GET_FILM_DATA_BY_QUERY_FAILED,
+  GET_FILM_TOP_RATED,
+  GET_FILM_TOP_RATED_FAILED,
+  GET_FILM_UPCOMING,
+  GET_FILM_UPCOMING_FAILED,
 } from './ActionType';
-import { getFilmByGenreService, getFilmByQueryService } from './Services';
+import {
+  getFilmByGenreService,
+  getFilmByQueryService,
+  getFilmTopRated,
+  getFilmUpcoming,
+} from './Services';
+
+export const getFilmDataUpcoming = () => {
+  return (dispatch: any) => {
+    getFilmUpcoming()
+      .then((response) => {
+        dispatch(getUpcoming(response));
+      })
+      .catch((error) => {
+        dispatch(getUpcomingFailed(error));
+      });
+  };
+
+  function getUpcoming(data: IItems[]) {
+    return {
+      type: GET_FILM_UPCOMING,
+      payload: data,
+    };
+  }
+
+  function getUpcomingFailed(error: string) {
+    return {
+      type: GET_FILM_UPCOMING_FAILED,
+      payload: { data: null, error: error },
+    };
+  }
+};
+
+export const getFilmDataTopRated = () => {
+  return (dispatch: any) => {
+    getFilmTopRated()
+      .then((response) => {
+        dispatch(getTopRated(response));
+      })
+      .catch((error) => {
+        dispatch(getTopRatedError(error));
+      });
+  };
+
+  function getTopRated(data: IItems[]) {
+    return {
+      type: GET_FILM_TOP_RATED,
+      payload: data,
+    };
+  }
+
+  function getTopRatedError(error: string) {
+    return {
+      type: GET_FILM_TOP_RATED_FAILED,
+      payload: { data: null, error: error },
+    };
+  }
+};
 
 export const getFilmDataByGenre = (genre: number) => {
   return (dispatch: any) => {

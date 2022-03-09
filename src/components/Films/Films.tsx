@@ -39,7 +39,6 @@ const Films = () => {
   const data = useSelector((state: RootState) => state.film).data;
   const [title, setTitle] = useState<string>('');
   const [genre, setGenre] = useState<number>(16);
-  console.log(data);
 
   const { Option } = Select;
 
