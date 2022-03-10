@@ -1,6 +1,4 @@
 import React from 'react';
-
-import { useAuth } from '../Hooks/useAuth';
 import { Menu, Typography, Col } from 'antd';
 import {
   HomeOutlined,
@@ -9,6 +7,8 @@ import {
   LoginOutlined,
 } from '@ant-design/icons';
 import { Link, useHistory } from 'react-router-dom';
+
+import { useAuth } from '../Hooks/useAuth';
 
 const MenuItem = Menu.Item;
 const { Text } = Typography;
@@ -47,7 +47,7 @@ function Navbar() {
           </Link>
         )}
         {isLoggedIn && (
-          <Link to="/" onClick={logoutHandler}>
+          <Link to="/login" onClick={logoutHandler}>
             <MenuItem icon={<LogoutOutlined />}>
               <Text>Log out</Text>
             </MenuItem>

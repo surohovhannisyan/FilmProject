@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Col, Row, Carousel } from 'antd';
+
 import { RootState } from '../../Reducers';
 import { getFilmDataTopRated, getFilmDataUpcoming } from '../Redux/Action';
-
-import { Col, Row, Carousel } from 'antd';
 
 import 'antd/dist/antd.css';
 import './Home.scss';
@@ -12,8 +12,6 @@ function Home() {
   const data = useSelector((state: RootState) => state.film).data;
   const upcomingData = useSelector((state: RootState) => state.upcomingFilms).data;
   const dispatch = useDispatch();
-  console.log(data);
-  console.log(upcomingData);
 
   const getFilmInfo = () => {
     dispatch(getFilmDataTopRated());

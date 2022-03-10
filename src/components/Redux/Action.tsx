@@ -1,4 +1,4 @@
-import { IItems } from '../Films/Films';
+import { IMovieDataItems } from '../Films/Films';
 import {
   GET_FILM_DATA,
   GET_FILM_DATA_FAILED,
@@ -15,26 +15,27 @@ import {
   getFilmTopRated,
   getFilmUpcoming,
 } from './Services';
+import { IReducerAction } from './Reducer';
+import { Dispatch } from 'react';
 
 export const getFilmDataUpcoming = () => {
-  return (dispatch: any) => {
-    getFilmUpcoming()
-      .then((response) => {
-        dispatch(getUpcoming(response));
-      })
-      .catch((error) => {
-        dispatch(getUpcomingFailed(error));
-      });
+  return async (dispatch: any) => {
+    try {
+      const response = await getFilmUpcoming();
+      dispatch(getUpcoming(response));
+    } catch (error) {
+      dispatch(getUpcomingFailed(error));
+    }
   };
 
-  function getUpcoming(data: IItems[]) {
+  function getUpcoming(data: IMovieDataItems[]) {
     return {
       type: GET_FILM_UPCOMING,
       payload: data,
     };
   }
 
-  function getUpcomingFailed(error: string) {
+  function getUpcomingFailed(error: string | unknown) {
     return {
       type: GET_FILM_UPCOMING_FAILED,
       payload: { data: null, error: error },
@@ -43,24 +44,23 @@ export const getFilmDataUpcoming = () => {
 };
 
 export const getFilmDataTopRated = () => {
-  return (dispatch: any) => {
-    getFilmTopRated()
-      .then((response) => {
-        dispatch(getTopRated(response));
-      })
-      .catch((error) => {
-        dispatch(getTopRatedError(error));
-      });
+  return async (dispatch: any) => {
+    try {
+      const response = await getFilmTopRated();
+      dispatch(getTopRated(response));
+    } catch (error) {
+      dispatch(getTopRatedError(error));
+    }
   };
 
-  function getTopRated(data: IItems[]) {
+  function getTopRated(data: IMovieDataItems[]) {
     return {
       type: GET_FILM_TOP_RATED,
       payload: data,
     };
   }
 
-  function getTopRatedError(error: string) {
+  function getTopRatedError(error: string | unknown) {
     return {
       type: GET_FILM_TOP_RATED_FAILED,
       payload: { data: null, error: error },
@@ -69,24 +69,23 @@ export const getFilmDataTopRated = () => {
 };
 
 export const getFilmDataByGenre = (genre: number) => {
-  return (dispatch: any) => {
-    getFilmByGenreService(genre)
-      .then((response) => {
-        dispatch(getByGenre(response));
-      })
-      .catch((error) => {
-        dispatch(getByGenreError(error));
-      });
+  return async (dispatch: any) => {
+    try {
+      const response = await getFilmByGenreService(genre);
+      dispatch(getByGenre(response));
+    } catch (error) {
+      dispatch(getByGenreError(error));
+    }
   };
 
-  function getByGenre(data: IItems[]) {
+  function getByGenre(data: IMovieDataItems[]) {
     return {
       type: GET_FILM_DATA,
       payload: data,
     };
   }
 
-  function getByGenreError(error: string) {
+  function getByGenreError(error: string | unknown) {
     return {
       type: GET_FILM_DATA_FAILED,
       payload: { data: null, error: error },
@@ -95,24 +94,23 @@ export const getFilmDataByGenre = (genre: number) => {
 };
 
 export const getFilmDataByQuery = (title: string) => {
-  return (dispatch: any) => {
-    getFilmByQueryService(title)
-      .then((response) => {
-        dispatch(getByQuery(response));
-      })
-      .catch((error) => {
-        dispatch(getByQueryError(error));
-      });
+  return async (dispatch: any) => {
+    try {
+      const response = await getFilmByQueryService(title);
+      dispatch(getByQuery(response));
+    } catch (error) {
+      dispatch(getByQueryError(error));
+    }
   };
 
-  function getByQuery(data: IItems[]) {
+  function getByQuery(data: IMovieDataItems[]) {
     return {
       type: GET_FILM_DATA_BY_QUERY,
       payload: data,
     };
   }
 
-  function getByQueryError(error: string) {
+  function getByQueryError(error: string | unknown) {
     return {
       type: GET_FILM_DATA_BY_QUERY_FAILED,
       payload: { data: null, error: error },

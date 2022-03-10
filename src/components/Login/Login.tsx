@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import axios from 'axios';
-
 import { useHistory } from 'react-router-dom';
-import { Card, Form, Input, Button, Typography, Col, notification } from 'antd';
-import { signIn, signUp } from './LoginApiCall';
+import { Card, Form, Input, Button, Typography, Col } from 'antd';
 
+import { signIn, signUp } from './LoginApiCall';
 import { useAuth } from '../Hooks/useAuth';
 
 import './Login.scss';

@@ -1,3 +1,5 @@
+import { Reducer } from 'redux';
+
 import {
   GET_FILM_DATA,
   GET_FILM_DATA_BY_QUERY,
@@ -8,17 +10,16 @@ import {
   GET_FILM_UPCOMING,
   GET_FILM_UPCOMING_FAILED,
 } from './ActionType';
-import { Reducer } from 'redux';
-import { IItems } from '../Films/Films';
+import { IMovieDataItems } from '../Films/Films';
 
-export interface IState {
-  data?: IItems[];
-  error?: string;
+export interface IReducerState {
+  data?: IMovieDataItems[];
+  error?: unknown | string;
 }
 
-interface IAction {
+export interface IReducerAction {
   type: string;
-  payload: any;
+  payload: IMovieDataItems[];
 }
 
 export const state = {
@@ -26,7 +27,7 @@ export const state = {
   error: '',
 };
 
-export const filmData: Reducer<IState, IAction> = (state, action) => {
+export const filmData: Reducer<IReducerState, IReducerAction> = (state, action) => {
   switch (action.type) {
     case GET_FILM_DATA:
       return { ...state, data: action.payload };
@@ -45,7 +46,7 @@ export const filmData: Reducer<IState, IAction> = (state, action) => {
   }
 };
 
-export const upcomingFilmData: Reducer<IState, IAction> = (state, action) => {
+export const upcomingFilmData: Reducer<IReducerState, IReducerAction> = (state, action) => {
   switch (action.type) {
     case GET_FILM_UPCOMING:
       return { ...state, data: action.payload };

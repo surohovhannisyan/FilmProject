@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from 'react';
-
 import { useDispatch, useSelector } from 'react-redux';
+import { Select, Table, Col, Input, Typography } from 'antd';
 
 import { getFilmDataByGenre, getFilmDataByQuery } from '../Redux/Action';
 import { RootState } from '../../Reducers';
-import { Select, Table, Col, Input, Typography } from 'antd';
 import { columns } from '../Config/FilmsTable.config';
 import { genres } from '../Config/FilmsGenres.config';
 
 import './Films.scss';
 import 'antd/dist/antd.css';
 
-export interface IItems {
+export interface IMovieDataItems {
   adult: boolean;
   backdrop_path: string;
   genre_ids: Array<number>;
@@ -26,11 +25,6 @@ export interface IItems {
   video: boolean;
   vote_average: number;
   vote_count: number;
-}
-
-interface ISign {
-  title: string;
-  genre: number;
 }
 
 const { Text } = Typography;
