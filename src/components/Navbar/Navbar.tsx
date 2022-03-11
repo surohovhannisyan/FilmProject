@@ -1,12 +1,12 @@
 import React from 'react';
 import { Menu, Typography, Col } from 'antd';
+import { Link, useHistory } from 'react-router-dom';
 import {
   HomeOutlined,
   OrderedListOutlined,
   LogoutOutlined,
   LoginOutlined,
 } from '@ant-design/icons';
-import { Link, useHistory } from 'react-router-dom';
 
 import { useAuth } from '../Hooks/useAuth';
 
@@ -25,7 +25,7 @@ function Navbar() {
   };
 
   return (
-    <Col className="navbar-root">
+    <Col>
       <Menu mode="horizontal">
         <Link to="/">
           <MenuItem icon={<HomeOutlined />}>

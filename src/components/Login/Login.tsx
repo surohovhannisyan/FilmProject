@@ -1,40 +1,32 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Card, Form, Input, Button, Typography, Col } from 'antd';
+import { Form, Input, Button, Typography, Col } from 'antd';
 
-import { signIn, signUp } from './LoginApiCall';
+import { signIn, signUp } from './loginApiCall';
 import { useAuth } from '../Hooks/useAuth';
 
-import './Login.scss';
 import 'antd/dist/antd.css';
+import styles from './Login.module.scss';
 
-const { Text } = Typography;
-const { Meta } = Card;
+const { Title } = Typography;
 
-interface IData {
-  email: string;
-  password: string;
-  idToken: string;
-  returnSecureToken: boolean;
-}
-
-interface ISignState {
+interface ILoginCardElements {
   title: string;
   titleTwo: string;
   btnValue: string;
-  status: boolean;
+  isRegistered: boolean;
 }
 
 function Login() {
   const [username, setUsernam] = useState<string>('');
-  const [pass, setPass] = useState<string>('');
-  const [signInUpState, setSignInUpState] = useState<ISignState>({
+  const [password, setPassword] = useState<string>('');
+  const [loginCardElements, setLoginCardElements] = useState<ILoginCardElements>({
     title: 'Log-in',
     titleTwo: 'Register for first',
     btnValue: 'Log-in',
-    status: true,
+    isRegistered: true,
   });
-
+  const { title, titleTwo, btnValue, isRegistered } = loginCardElements;
   const authCtx = useAuth();
   const history = useHistory();
 
@@ -43,66 +35,52 @@ function Login() {
   };
 
   const passChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPass(e.target.value);
+    setPassword(e.target.value);
   };
 
   const submitHandler = () => {
     setUsernam('');
-    setPass('');
-    if (signInUpState.status == false) {
-      signUp(username, pass);
+    setPassword('');
+    if (isRegistered === false) {
+      signUp(username, password);
     } else {
-      signIn(username, pass, authCtx, history);
+      signIn({ username, password, authCtx, history });
     }
   };
 
   const changeHandler = () => {
-    setSignInUpState({
-      ...signInUpState,
+    setLoginCardElements({
+      ...loginCardElements,
       title: 'Register',
       titleTwo: 'Already registeered? So log-in',
       btnValue: 'Register',
-      status: false,
+      isRegistered: false,
     });
-    if (signInUpState.status == false) {
-      setSignInUpState({
+    if (isRegistered == false) {
+      setLoginCardElements({
         title: 'Log-in',
         titleTwo: 'Register for first',
         btnValue: 'Log-in',
-        status: true,
+        isRegistered: true,
       });
     }
   };
 
   return (
-    <Col className="loginBody">
-      <Col className="login-root">
-        <Card className="login-card">
-          <Meta title={signInUpState.title} />
-          <Form>
-            <Text className="mailLabel">E-Mail</Text>
-            <Input
-              value={username}
-              onChange={userChangeHandler}
-              className="main-input-one"
-              type="email"
-            />
-            <Text className="passLabel">Password</Text>
-            <Input
-              className="main-input-two"
-              value={pass}
-              onChange={passChangeHandler}
-              type="password"
-            />
-          </Form>
-          <Button className="log-btn" onClick={submitHandler}>
-            <Text>{signInUpState.btnValue}</Text>
-          </Button>
-          <Col onClick={changeHandler}>
-            <Meta title={signInUpState.titleTwo} className="meta-two" />
-          </Col>
-        </Card>
-      </Col>
+    <Col className={styles.loginCard}>
+      <Title level={4}>{title}</Title>
+      <Form>
+        <Title level={5}>E-Mail</Title>
+        <Input value={username} onChange={userChangeHandler} type="email" />
+        <Title level={5}>Password</Title>
+        <Input value={password} onChange={passChangeHandler} type="password" minLength={8} />
+        <Button onClick={submitHandler}>
+          <Title level={5}>{btnValue}</Title>
+        </Button>
+        <Title onClick={changeHandler} level={5}>
+          <a>{titleTwo}</a>
+        </Title>
+      </Form>
     </Col>
   );
 }

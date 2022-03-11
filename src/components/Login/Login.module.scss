@@ -1,0 +1,24 @@
+.loginCard {
+  width: 100%;
+  margin: 10px auto;
+  text-align: center;
+  background: linear-gradient(transparent, #c5e2fd, transparent);
+  padding: 15px;
+
+  Form Input {
+    width: 30%;
+    box-shadow: 1px 1px 3px 3px #61b3ff;
+    margin: 5px auto;
+  }
+
+  Form Input:invalid {
+    box-shadow: 1px 1px 3px 3px #fa2d2d;
+    color: red;
+  }
+  Form Button {
+    width: 15%;
+    display: block;
+    box-shadow: 1px 1px 3px 3px #61b3ff;
+    margin: 10px auto;
+  }
+}

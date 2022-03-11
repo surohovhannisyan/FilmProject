@@ -1,5 +1,6 @@
 import React from 'react';
 import { Redirect, Route, RouteProps } from 'react-router-dom';
+
 import { useAuth } from './useAuth';
 
 interface IProps extends RouteProps {
@@ -7,7 +8,7 @@ interface IProps extends RouteProps {
 }
 
 const PrivateRoute: React.FC<IProps> = ({ ...rest }) => {
-  const isLoggedIn = useAuth().isLoggedIn;
+  const { isLoggedIn } = useAuth();
 
   if (isLoggedIn == false) return <Redirect to="/login" />;
   return <Route {...rest} />;

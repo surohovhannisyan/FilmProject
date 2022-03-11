@@ -4,16 +4,16 @@ import { Select, Table, Col, Input, Typography } from 'antd';
 
 import { getFilmDataByGenre, getFilmDataByQuery } from '../Redux/Action';
 import { RootState } from '../../Reducers';
-import { columns } from '../Config/FilmsTable.config';
-import { genres } from '../Config/FilmsGenres.config';
+import { columns } from '../Config/filmsTable.config';
+import { genres } from '../Config/filmsGenres.config';
 
-import './Films.scss';
+import styles from './Films.module.scss';
 import 'antd/dist/antd.css';
 
 export interface IMovieDataItems {
   adult: boolean;
   backdrop_path: string;
-  genre_ids: Array<number>;
+  genre_ids: number[];
   id: number;
   original_language: string;
   original_title: string;
@@ -27,9 +27,9 @@ export interface IMovieDataItems {
   vote_count: number;
 }
 
-const { Text } = Typography;
+const { Title } = Typography;
 
-const Films = () => {
+export const Films = () => {
   const data = useSelector((state: RootState) => state.film).data;
   const [title, setTitle] = useState<string>('');
   const [genre, setGenre] = useState<number>(16);
@@ -54,10 +54,10 @@ const Films = () => {
     getFilmBySearch();
   }, [title]);
 
-  const dataArr: Object[] = [];
+  const movieData: object[] = [];
 
   data?.map((item) => {
-    dataArr.push(item);
+    movieData.push(item);
   });
 
   const selectChangeHandler = (value: number) => {
@@ -70,10 +70,12 @@ const Films = () => {
   };
 
   return (
-    <Col className="films-root">
-      <Col className="search-sect">
-        <h4 className="labelSelect">Select Genre</h4>
-        <Select onChange={selectChangeHandler} placeholder="Genres" className="selectGenre">
+    <Col className={styles.filmsRoot}>
+      <Col className={styles.searchSect}>
+        <Title level={5} className={styles.labelSelect}>
+          Select Genre
+        </Title>
+        <Select onChange={selectChangeHandler} placeholder="Genres" className={styles.selectGenre}>
           {genres.map((item) => (
             <Option key={item.key} value={item.key}>
               {item.genre_name}
@@ -81,12 +83,19 @@ const Films = () => {
           ))}
         </Select>
       </Col>
-      <Col className="input-sect">
-        <h4 className="labelSearch">Search By Title </h4>
+      <Col className={styles.inputSect}>
+        <Title level={5} className={styles.labelSearch}>
+          Search By Title
+        </Title>
         <Input type="text" value={title} onChange={changeInputHandler} placeholder="Type title" />
       </Col>
       <Col className="filmTable">
-        <Table columns={columns} dataSource={dataArr} className="tableMain" pagination={false} />
+        <Table
+          columns={columns}
+          dataSource={movieData}
+          className={styles.tableMain}
+          pagination={false}
+        />
       </Col>
     </Col>
   );

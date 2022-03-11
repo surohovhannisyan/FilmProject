@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from '../Films/Films.module.scss';
 
 export const columns = [
   { title: 'Original Title', dataIndex: 'original_title', key: 'original_title', width: '20%' },
@@ -11,8 +12,8 @@ export const columns = [
     dataIndex: 'poster_path',
     key: 'poster_path',
     width: '20%',
-    render: (Poster: string) => {
-      return <img src={`https://image.tmdb.org/t/p/w500/${Poster}`} className="imgTable" />;
+    render: (poster: string) => {
+      return <img src={`https://image.tmdb.org/t/p/w500/${poster}`} className={styles.imgTable} />;
     },
   },
 ];

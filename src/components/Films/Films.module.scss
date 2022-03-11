@@ -1,8 +1,8 @@
-.films-root {
+.filmsRoot {
   margin: 5px auto;
   padding: 15px;
 
-  .search-sect {
+  .searchSect {
     width: 100%;
     margin: 5px auto;
     padding: 5px;
@@ -23,7 +23,7 @@
     margin: 5px;
   }
 
-  .film-main {
+  .filmMain {
     width: 50%;
     border: 1px solid red;
     margin: 5px;
@@ -31,15 +31,15 @@
     display: flex;
   }
 
-  .film-main div {
+  .filmMain div {
     width: 50%;
   }
 
-  .film-backdrop {
+  .filmBackdrop {
     width: 80%;
   }
 
-  .film-sect {
+  .filmSect {
     display: flex;
   }
 
@@ -56,7 +56,7 @@
     display: block;
     margin: 5px;
   }
-  .input-sect {
+  .inputSect {
     width: 20%;
   }
 }

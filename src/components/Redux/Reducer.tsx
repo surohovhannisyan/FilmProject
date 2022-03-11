@@ -17,6 +17,8 @@ export interface IReducerState {
   error?: unknown | string;
 }
 
+export type DispatchType = (arg: { type: string; payload: IMovieDataItems[] }) => void;
+
 export interface IReducerAction {
   type: string;
   payload: IMovieDataItems[];

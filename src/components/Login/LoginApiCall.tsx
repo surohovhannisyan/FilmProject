@@ -1,26 +1,23 @@
 import React from 'react';
 import axios from 'axios';
 import { notification } from 'antd';
-
 import { History, LocationState } from 'history';
+
 import { ContextValueInterface } from '../Store/auth-context';
+import { signInURL, signUpURL } from './loginConstants';
 
-const signInURL =
-  'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBRegmu6l6G00JTkDtLcmhD97rD2NBg2cU';
+interface ISignInCredentals {
+  username: string;
+  password: string;
+  authCtx: ContextValueInterface;
+  history: History<LocationState>;
+}
 
-const signUpURL =
-  'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBRegmu6l6G00JTkDtLcmhD97rD2NBg2cU';
-
-export const signIn = async (
-  username: string,
-  pass: string,
-  authCtx: ContextValueInterface,
-  history: History<LocationState>
-) => {
+export const signIn = async ({ username, password, authCtx, history }: ISignInCredentals) => {
   try {
     const response = await axios.post(
       signInURL,
-      { email: username, password: pass, returnSecureToken: true },
+      { email: username, password: password, returnSecureToken: true },
       {
         headers: { 'Content-type': 'application/json' },
       }
@@ -39,11 +36,11 @@ export const signIn = async (
   }
 };
 
-export const signUp = async (username: string, pass: string) => {
+export const signUp = async (username: string, password: string) => {
   try {
     const response = await axios.post(
       signUpURL,
-      { email: username, password: pass, returnSecureToken: true },
+      { email: username, password: password, returnSecureToken: true },
       {
         headers: { 'Content-type': 'application/json' },
       }

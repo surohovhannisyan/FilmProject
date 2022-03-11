@@ -15,8 +15,6 @@ import {
   getFilmTopRated,
   getFilmUpcoming,
 } from './Services';
-import { IReducerAction } from './Reducer';
-import { Dispatch } from 'react';
 
 export const getFilmDataUpcoming = () => {
   return async (dispatch: any) => {

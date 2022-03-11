@@ -26,8 +26,9 @@
   "rules": {
     "require-jsdoc": "off",
     "react/prop-types": "off",
+    "no-console": "1",
     "no-unused-vars": 0,
-    "@typescript-eslint/no-empty-interface": "off",
+    "@typescript-eslint/no-empty-interface": "on",
     "@typescript-eslint/ban-ts-comment": "off",
     "@typescript-eslint/ban-types": "off",
     "prettier/prettier": [
