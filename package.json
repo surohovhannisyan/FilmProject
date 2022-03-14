@@ -30,7 +30,9 @@
     "lint": "eslint --ext .ts,.tsx src --fix",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "husky-install": "husky install",
+    "lint-staged": "lint-staged --config lint-staged.js"
   },
   "prettier": {
     "singleQuote": true,
@@ -69,9 +71,12 @@
     "eslint-plugin-prettier": "~4.0.0",
     "eslint-plugin-react": "~7.28.0",
     "eslint-plugin-react-hooks": "~4.3.0",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.3.5",
     "prettier": "~2.5.1",
     "stylelint": "~14.5.3",
     "stylelint-config-prettier": "~9.0.3",
-    "stylelint-config-standard": "~25.0.0"
+    "stylelint-config-standard": "~25.0.0",
+    "tsc-files": "^1.1.3"
   }
 }

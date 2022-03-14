@@ -4,7 +4,7 @@ import { notification } from 'antd';
 import { History, LocationState } from 'history';
 
 import { ContextValueInterface } from '../Store/auth-context';
-import { signInURL, signUpURL } from './loginConstants';
+import { signInURL, signUpURL } from './login.constants';
 
 interface ISignInCredentals {
   username: string;

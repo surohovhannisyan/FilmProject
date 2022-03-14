@@ -20,6 +20,7 @@ export const TopRatedMovies = () => {
   useEffect(() => {
     getFilmInfo();
   }, []);
+
   return (
     <Col>
       <Col>

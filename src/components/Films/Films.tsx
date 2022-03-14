@@ -4,8 +4,8 @@ import { Select, Table, Col, Input, Typography } from 'antd';
 
 import { getFilmDataByGenre, getFilmDataByQuery } from '../Redux/Action';
 import { RootState } from '../../Reducers';
-import { columns } from '../Config/filmsTable.config';
-import { genres } from '../Config/filmsGenres.config';
+import { columns } from './filmsTable.config';
+import { genres } from './filmsGenres.constants';
 
 import styles from './Films.module.scss';
 import 'antd/dist/antd.css';
@@ -30,12 +30,11 @@ export interface IMovieDataItems {
 const { Title } = Typography;
 
 export const Films = () => {
-  const data = useSelector((state: RootState) => state.film).data;
+  const { data } = useSelector((state: RootState) => state.film);
   const [title, setTitle] = useState<string>('');
   const [genre, setGenre] = useState<number>(16);
 
   const { Option } = Select;
-
   const dispatch = useDispatch();
 
   const getFilmInfo = () => {
@@ -53,12 +52,6 @@ export const Films = () => {
   useEffect(() => {
     getFilmBySearch();
   }, [title]);
-
-  const movieData: object[] = [];
-
-  data?.map((item) => {
-    movieData.push(item);
-  });
 
   const selectChangeHandler = (value: number) => {
     setGenre(value);
@@ -92,7 +85,7 @@ export const Films = () => {
       <Col className="filmTable">
         <Table
           columns={columns}
-          dataSource={movieData}
+          dataSource={data}
           className={styles.tableMain}
           pagination={false}
         />

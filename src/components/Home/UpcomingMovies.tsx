@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Col, Row, Carousel, Typography, Image } from 'antd';
 
 import { RootState } from '../../Reducers';
-import { getFilmDataTopRated, getFilmDataUpcoming } from '../Redux/Action';
+import { getFilmDataUpcoming } from '../Redux/Action';
 
 import styles from './UpcomingMovies.module.scss';
 
@@ -11,10 +11,6 @@ const { Title, Text } = Typography;
 export const UpcomingMovies = () => {
   const { data } = useSelector((state: RootState) => state.upcomingFilms);
   const dispatch = useDispatch();
-
-  const getFilmInfo = () => {
-    dispatch(getFilmDataTopRated());
-  };
 
   const getFilmInfoUpcoming = () => {
     dispatch(getFilmDataUpcoming());

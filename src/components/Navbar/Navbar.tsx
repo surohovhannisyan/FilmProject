@@ -14,13 +14,12 @@ const MenuItem = Menu.Item;
 const { Text } = Typography;
 
 function Navbar() {
-  const authCtx = useAuth();
-  const isLoggedIn = authCtx.isLoggedIn;
+  const { isLoggedIn, logout } = useAuth();
 
   const history = useHistory();
 
   const logoutHandler = (): void => {
-    authCtx.logout();
+    logout();
     history.push('/login');
   };
 

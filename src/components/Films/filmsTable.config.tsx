@@ -1,4 +1,5 @@
 import React from 'react';
+
 import styles from '../Films/Films.module.scss';
 
 export const columns = [

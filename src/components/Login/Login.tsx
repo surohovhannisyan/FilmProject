@@ -17,7 +17,7 @@ interface ILoginCardElements {
   isRegistered: boolean;
 }
 
-function Login() {
+const Login = () => {
   const [username, setUsernam] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [loginCardElements, setLoginCardElements] = useState<ILoginCardElements>({
@@ -71,7 +71,9 @@ function Login() {
       <Title level={4}>{title}</Title>
       <Form>
         <Title level={5}>E-Mail</Title>
-        <Input value={username} onChange={userChangeHandler} type="email" />
+        <Form.Item label="Username" name="username">
+          <Input value={username} onChange={userChangeHandler} type="email" />
+        </Form.Item>
         <Title level={5}>Password</Title>
         <Input value={password} onChange={passChangeHandler} type="password" minLength={8} />
         <Button onClick={submitHandler}>
@@ -83,6 +85,6 @@ function Login() {
       </Form>
     </Col>
   );
-}
+};
 
 export default Login;

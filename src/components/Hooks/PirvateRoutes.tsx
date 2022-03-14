@@ -10,7 +10,7 @@ interface IProps extends RouteProps {
 const PrivateRoute: React.FC<IProps> = ({ ...rest }) => {
   const { isLoggedIn } = useAuth();
 
-  if (isLoggedIn == false) return <Redirect to="/login" />;
+  if (isLoggedIn === false) return <Redirect to="/login" />;
   return <Route {...rest} />;
 };
 
