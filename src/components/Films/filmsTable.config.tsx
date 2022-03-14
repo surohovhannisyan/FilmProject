@@ -1,6 +1,6 @@
 import React from 'react';
 
-import styles from '../Films/Films.module.scss';
+import styles from './Films.module.scss';
 
 export const columns = [
   { title: 'Original Title', dataIndex: 'original_title', key: 'original_title', width: '20%' },

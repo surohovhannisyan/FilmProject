@@ -28,7 +28,7 @@
     "react/prop-types": "off",
     "no-console": 1,
     "no-unused-vars": 0,
-    "@typescript-eslint/no-empty-interface": "on",
+    "@typescript-eslint/no-empty-interface": 1,
     "@typescript-eslint/ban-ts-comment": "off",
     "@typescript-eslint/ban-types": "off",
     "prettier/prettier": [

@@ -8,7 +8,7 @@ import { useAuth } from '../Hooks/useAuth';
 import 'antd/dist/antd.css';
 import styles from './Login.module.scss';
 
-const { Title } = Typography;
+const { Title, Text } = Typography;
 
 interface ILoginCardElements {
   title: string;
@@ -21,9 +21,9 @@ const Login = () => {
   const [username, setUsernam] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [loginCardElements, setLoginCardElements] = useState<ILoginCardElements>({
-    title: 'Log-in',
-    titleTwo: 'Register for first',
-    btnValue: 'Log-in',
+    title: 'Sign-in',
+    titleTwo: 'Sign-up for first',
+    btnValue: 'Sign-in',
     isRegistered: true,
   });
   const { title, titleTwo, btnValue, isRegistered } = loginCardElements;
@@ -51,16 +51,16 @@ const Login = () => {
   const changeHandler = () => {
     setLoginCardElements({
       ...loginCardElements,
-      title: 'Register',
-      titleTwo: 'Already registeered? So log-in',
-      btnValue: 'Register',
+      title: 'Sign Up',
+      titleTwo: 'Already signed-up? So sign-in',
+      btnValue: 'Sign-up',
       isRegistered: false,
     });
     if (isRegistered == false) {
       setLoginCardElements({
-        title: 'Log-in',
-        titleTwo: 'Register for first',
-        btnValue: 'Log-in',
+        title: 'Sign In',
+        titleTwo: 'Sign-up for first',
+        btnValue: 'Sign-in',
         isRegistered: true,
       });
     }
@@ -70,18 +70,18 @@ const Login = () => {
     <Col className={styles.loginCard}>
       <Title level={4}>{title}</Title>
       <Form>
-        <Title level={5}>E-Mail</Title>
-        <Form.Item label="Username" name="username">
-          <Input value={username} onChange={userChangeHandler} type="email" />
-        </Form.Item>
-        <Title level={5}>Password</Title>
+        <Text strong className={styles.label}>
+          E-Mail
+        </Text>
+        <Input value={username} onChange={userChangeHandler} type="email" />
+        <Text strong className={styles.label}>
+          Password
+        </Text>
         <Input value={password} onChange={passChangeHandler} type="password" minLength={8} />
-        <Button onClick={submitHandler}>
-          <Title level={5}>{btnValue}</Title>
-        </Button>
-        <Title onClick={changeHandler} level={5}>
+        <Button onClick={submitHandler}>{btnValue}</Button>
+        <Text underline onClick={changeHandler}>
           <a>{titleTwo}</a>
-        </Title>
+        </Text>
       </Form>
     </Col>
   );

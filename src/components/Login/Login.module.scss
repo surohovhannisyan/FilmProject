@@ -2,7 +2,7 @@
   width: 100%;
   margin: 10px auto;
   text-align: center;
-  background: linear-gradient(transparent, #c5e2fd, transparent);
+  background: linear-gradient(transparent, #d2e7fc, transparent);
   padding: 15px;
 
   Form Input {
@@ -10,7 +10,9 @@
     box-shadow: 1px 1px 3px 3px #61b3ff;
     margin: 5px auto;
   }
-
+  Form .label {
+    display: block;
+  }
   Form Input:invalid {
     box-shadow: 1px 1px 3px 3px #fa2d2d;
     color: red;
