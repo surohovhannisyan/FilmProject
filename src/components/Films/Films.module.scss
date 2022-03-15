@@ -1,14 +1,14 @@
-.filmsRoot {
+.films-root {
   margin: 5px auto;
   padding: 15px;
 
-  .searchSect {
+  .search-sect {
     width: 100%;
     margin: 5px auto;
     padding: 5px;
   }
 
-  .filmSearch {
+  .film-search {
     width: 25%;
   }
 
@@ -19,11 +19,11 @@
     text-align: center;
   }
 
-  .selectMain {
+  .select-main {
     margin: 5px;
   }
 
-  .filmMain {
+  .film-main {
     width: 50%;
     border: 1px solid red;
     margin: 5px;
@@ -31,32 +31,30 @@
     display: flex;
   }
 
-  .filmMain div {
+  .film-main div {
     width: 50%;
   }
 
-  .filmBackdrop {
-    width: 80%;
-  }
-
-  .filmSect {
+  .film-sect {
     display: flex;
   }
 
-  .imgTable {
+  .img-table {
     width: 100%;
     padding: 10px;
   }
 
-  .selectGenre {
+  .select-genre {
     display: block;
     width: 120px;
   }
-  .labelSearch {
+
+  .label-search {
     display: block;
     margin: 5px;
   }
-  .inputSect {
+
+  .input-sect {
     width: 20%;
   }
 }

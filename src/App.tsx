@@ -10,7 +10,6 @@ const Login = React.lazy(() => import('./components/Login/Login'));
 const NotFound = React.lazy(() => import('./components/ErrorPage/ErrorPage'));
 
 import 'antd/dist/antd.css';
-import './App.css';
 
 function App() {
   return (

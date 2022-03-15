@@ -4,8 +4,8 @@ import { Space, Spin } from 'antd';
 import styles from './Loading.module.scss';
 const Loading = () => {
   return (
-    <Space className={styles.loadingSpace}>
-      <Spin size="large" className={styles.loadingSpin} />
+    <Space className={styles['loading-space']}>
+      <Spin size="large" className={styles['loading-spin']} />
     </Space>
   );
 };

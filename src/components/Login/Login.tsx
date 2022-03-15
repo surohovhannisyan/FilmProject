@@ -67,7 +67,7 @@ const Login = () => {
   };
 
   return (
-    <Col className={styles.loginCard}>
+    <Col className={styles['login-card']}>
       <Title level={4}>{title}</Title>
       <Form>
         <Text strong className={styles.label}>

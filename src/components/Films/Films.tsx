@@ -64,12 +64,16 @@ export const Films = () => {
   };
 
   return (
-    <Col className={styles.filmsRoot}>
-      <Col className={styles.searchSect}>
-        <Title level={5} className={styles.labelSelect}>
+    <Col className={styles['films-root']}>
+      <Col className={styles['search-sect']}>
+        <Title level={5} className={styles['label-select']}>
           Select Genre
         </Title>
-        <Select onChange={selectChangeHandler} placeholder="Genres" className={styles.selectGenre}>
+        <Select
+          onChange={selectChangeHandler}
+          placeholder="Genres"
+          className={styles['select-genre']}
+        >
           {genres.map((item) => (
             <Option key={item.key} value={item.key}>
               {item.genre_name}
@@ -77,17 +81,17 @@ export const Films = () => {
           ))}
         </Select>
       </Col>
-      <Col className={styles.inputSect}>
-        <Title level={5} className={styles.labelSearch}>
+      <Col className={styles['input-sect']}>
+        <Title level={5} className={styles['label-search']}>
           Search By Title
         </Title>
         <Input type="text" value={title} onChange={inputChangeHandler} placeholder="Type title" />
       </Col>
-      <Col className="filmTable">
+      <Col className={styles['film-table']}>
         <Table
           columns={movieDataTableConfig()}
           dataSource={data}
-          className={styles.tableMain}
+          className={styles['table-main']}
           pagination={false}
         />
       </Col>

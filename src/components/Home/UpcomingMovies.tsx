@@ -28,15 +28,15 @@ const UpcomingMovies = () => {
   return (
     <Col>
       <Col>
-        <Title level={3} className={styles.titleTwo}>
+        <Title level={3} className={styles['title-two']}>
           Upcoming
         </Title>
       </Col>
-      <Carousel dotPosition="top" autoplay className={styles.carouselUpcoming}>
+      <Carousel dotPosition="top" autoplay className={styles['carousel-upcoming']}>
         {data?.map((item) => (
-          <Row className={styles.rowUpcoming} key={item.id}>
-            <Col className={styles.colUpcomingIn}>
-              <Col className={styles.upcomingMain}>
+          <Row className={styles['row-upcoming']} key={item.id}>
+            <Col className={styles['col-upcoming-in']}>
+              <Col className={styles['upcoming-main']}>
                 <Title level={4}>Title: {item.original_title}</Title>
                 <hr />
                 <Text>
@@ -49,7 +49,7 @@ const UpcomingMovies = () => {
                   <Text strong>Overview:</Text> {item.overview}
                 </Col>
               </Col>
-              <Col className={styles.upcomingPattern}>
+              <Col className={styles['upcoming-pattern']}>
                 <Image src={imageURL(item.poster_path)} />
               </Col>
             </Col>

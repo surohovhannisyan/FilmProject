@@ -1,14 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-
-import { AuthContextProvider } from '../src/components/Store/auth-context';
+import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
+
+import reportWebVitals from './reportWebVitals';
+import { AuthContextProvider } from '../src/components/Store/auth-context';
 import rootReducer from './Reducers';
-import thunk from 'redux-thunk';
+import App from './App';
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
 

@@ -9,7 +9,7 @@ import styles from './Home.module.scss';
 
 function Home() {
   return (
-    <Col className={styles.topRated}>
+    <Col className={styles['top-rated']}>
       <Suspense fallback={<>Loading...</>}>
         <TopRatedMovies />
         <UpcomingMovies />

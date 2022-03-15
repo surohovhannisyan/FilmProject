@@ -16,7 +16,7 @@ export const movieDataTableConfig = () => {
       width: '20%',
       render: (poster: string) => {
         return (
-          <img src={`https://image.tmdb.org/t/p/w500/${poster}`} className={styles.imgTable} />
+          <img src={`https://image.tmdb.org/t/p/w500/${poster}`} className={styles['img-table']} />
         );
       },
     },

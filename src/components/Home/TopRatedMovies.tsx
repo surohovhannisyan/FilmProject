@@ -28,11 +28,11 @@ const TopRatedMovies = () => {
   return (
     <Col>
       <Col>
-        <Title className={styles.titleOne} level={3}>
+        <Title className={styles['title-one']} level={3}>
           Top Rated
         </Title>
       </Col>
-      <Carousel effect="fade" autoplay className={styles.carouselTopRated}>
+      <Carousel effect="fade" autoplay className={styles['carousel-top-rated']}>
         {data?.map((item) => (
           <Row className={styles['row-top-rated']} key={item.id}>
             <Col className={styles['col-top-rated-in']}>
