@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import Navbar from './components/Navbar/Navbar';
-import Home from './components/Home/Home';
-import Films from './components/Films/Films';
-import Login from './components/Login/Login';
 import PrivateRoute from './components/Hooks/PirvateRoutes';
-import NotFound from './components/ErrorPage/ErrorPage';
+import Navbar from './components/Navbar/Navbar';
+import Loading from './components/Loading/Loading';
+const Home = React.lazy(() => import('./components/Home/Home'));
+const Films = React.lazy(() => import('./components/Films/Films'));
+const Login = React.lazy(() => import('./components/Login/Login'));
+const NotFound = React.lazy(() => import('./components/ErrorPage/ErrorPage'));
 
 import 'antd/dist/antd.css';
 import './App.css';
@@ -14,13 +15,15 @@ import './App.css';
 function App() {
   return (
     <Router>
-      <Navbar />
-      <Switch>
-        <Route path="/" exact component={Home} />
-        <PrivateRoute path="/films" component={Films} />
-        <Route path="/login" component={Login} />
-        <Route path="*" component={NotFound} />
-      </Switch>
+      <Suspense fallback={<Loading />}>
+        <Navbar />
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <PrivateRoute path="/films" component={Films} />
+          <Route path="/login" component={Login} />
+          <Route path="*" component={NotFound} />
+        </Switch>
+      </Suspense>
     </Router>
   );
 }

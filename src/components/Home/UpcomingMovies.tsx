@@ -9,7 +9,7 @@ import styles from './UpcomingMovies.module.scss';
 
 const { Title, Text } = Typography;
 
-export const UpcomingMovies = () => {
+const UpcomingMovies = () => {
   const { data } = useSelector((state: RootState) => state.upcomingFilms);
   const dispatch = useDispatch();
 
@@ -59,3 +59,5 @@ export const UpcomingMovies = () => {
     </Col>
   );
 };
+
+export default UpcomingMovies;

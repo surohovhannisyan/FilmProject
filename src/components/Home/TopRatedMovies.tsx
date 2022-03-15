@@ -9,7 +9,7 @@ import styles from './TopRatedMovies.module.scss';
 
 const { Title, Text } = Typography;
 
-export const TopRatedMovies = () => {
+const TopRatedMovies = () => {
   const { data } = useSelector((state: RootState) => state.film);
   const dispatch = useDispatch();
 
@@ -59,3 +59,5 @@ export const TopRatedMovies = () => {
     </Col>
   );
 };
+
+export default TopRatedMovies;

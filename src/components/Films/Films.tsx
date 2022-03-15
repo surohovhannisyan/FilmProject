@@ -4,7 +4,7 @@ import { Select, Table, Col, Input, Typography } from 'antd';
 
 import { getFilmDataByGenre, getFilmDataByQuery } from '../Redux/Action';
 import { RootState } from '../../Reducers';
-import { columns } from './filmsTable.config';
+import { movieDataTableConfig } from './filmsTable.config';
 import { genres } from './filmsGenres.constants';
 
 import styles from './Films.module.scss';
@@ -55,10 +55,11 @@ export const Films = () => {
 
   const selectChangeHandler = (value: number) => {
     setGenre(value);
+    console.log(value);
     setTitle('');
   };
 
-  const changeInputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const inputChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
   };
 
@@ -80,11 +81,11 @@ export const Films = () => {
         <Title level={5} className={styles.labelSearch}>
           Search By Title
         </Title>
-        <Input type="text" value={title} onChange={changeInputHandler} placeholder="Type title" />
+        <Input type="text" value={title} onChange={inputChangeHandler} placeholder="Type title" />
       </Col>
       <Col className="filmTable">
         <Table
-          columns={columns}
+          columns={movieDataTableConfig()}
           dataSource={data}
           className={styles.tableMain}
           pagination={false}

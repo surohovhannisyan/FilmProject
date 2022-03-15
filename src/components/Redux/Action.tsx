@@ -16,8 +16,12 @@ import {
   getFilmUpcoming,
 } from './Services';
 
+interface IDispatch {
+  (arg: { type: string; payload: IMovieDataItems[] | { data: null; error: unknown } }): void;
+}
+
 export const getFilmDataUpcoming = () => {
-  return async (dispatch: any) => {
+  return async (dispatch: IDispatch) => {
     try {
       const response = await getFilmUpcoming();
       dispatch(getUpcoming(response));
@@ -42,7 +46,7 @@ export const getFilmDataUpcoming = () => {
 };
 
 export const getFilmDataTopRated = () => {
-  return async (dispatch: any) => {
+  return async (dispatch: IDispatch) => {
     try {
       const response = await getFilmTopRated();
       dispatch(getTopRated(response));
@@ -67,7 +71,7 @@ export const getFilmDataTopRated = () => {
 };
 
 export const getFilmDataByGenre = (genre: number) => {
-  return async (dispatch: any) => {
+  return async (dispatch: IDispatch) => {
     try {
       const response = await getFilmByGenreService(genre);
       dispatch(getByGenre(response));
@@ -92,7 +96,7 @@ export const getFilmDataByGenre = (genre: number) => {
 };
 
 export const getFilmDataByQuery = (title: string) => {
-  return async (dispatch: any) => {
+  return async (dispatch: IDispatch) => {
     try {
       const response = await getFilmByQueryService(title);
       dispatch(getByQuery(response));

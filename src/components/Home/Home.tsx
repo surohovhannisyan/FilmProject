@@ -1,11 +1,8 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Col, Row, Carousel, Typography, Image } from 'antd';
+import React, { Suspense } from 'react';
+import { Col } from 'antd';
 
-import { RootState } from '../../Reducers';
-import { getFilmDataTopRated, getFilmDataUpcoming } from '../Redux/Action';
-import { UpcomingMovies } from './UpcomingMovies';
-import { TopRatedMovies } from './TopRatedMovies';
+const UpcomingMovies = React.lazy(() => import('./UpcomingMovies'));
+const TopRatedMovies = React.lazy(() => import('./TopRatedMovies'));
 
 import 'antd/dist/antd.css';
 import styles from './Home.module.scss';
@@ -13,8 +10,10 @@ import styles from './Home.module.scss';
 function Home() {
   return (
     <Col className={styles.topRated}>
-      <TopRatedMovies />
-      <UpcomingMovies />
+      <Suspense fallback={<>Loading...</>}>
+        <TopRatedMovies />
+        <UpcomingMovies />
+      </Suspense>
     </Col>
   );
 }

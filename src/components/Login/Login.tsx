@@ -79,8 +79,8 @@ const Login = () => {
         </Text>
         <Input value={password} onChange={passChangeHandler} type="password" minLength={8} />
         <Button onClick={submitHandler}>{btnValue}</Button>
-        <Text underline onClick={changeHandler}>
-          <a>{titleTwo}</a>
+        <Text underline>
+          <a onClick={changeHandler}>{titleTwo}</a>
         </Text>
       </Form>
     </Col>
