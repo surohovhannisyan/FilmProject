@@ -14,8 +14,8 @@ import 'antd/dist/antd.css';
 function App() {
   return (
     <Router>
+      <Navbar />
       <Suspense fallback={<Loading />}>
-        <Navbar />
         <Switch>
           <Route path="/" exact component={Home} />
           <PrivateRoute path="/films" component={Films} />

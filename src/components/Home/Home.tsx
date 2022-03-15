@@ -1,8 +1,8 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import { Col } from 'antd';
 
-const UpcomingMovies = React.lazy(() => import('./UpcomingMovies'));
-const TopRatedMovies = React.lazy(() => import('./TopRatedMovies'));
+import UpcomingMovies from './UpcomingMovies';
+import TopRatedMovies from './TopRatedMovies';
 
 import 'antd/dist/antd.css';
 import styles from './Home.module.scss';
@@ -10,10 +10,8 @@ import styles from './Home.module.scss';
 function Home() {
   return (
     <Col className={styles['top-rated']}>
-      <Suspense fallback={<>Loading...</>}>
-        <TopRatedMovies />
-        <UpcomingMovies />
-      </Suspense>
+      <TopRatedMovies />
+      <UpcomingMovies />
     </Col>
   );
 }
