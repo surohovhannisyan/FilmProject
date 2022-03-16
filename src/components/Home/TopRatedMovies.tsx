@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Col, Row, Carousel, Typography, Image } from 'antd';
+import { Typography, Col, Carousel, Row, Image } from 'antd';
 
 import { RootState } from '../../Reducers';
 import { getFilmDataUpcoming } from '../Redux/Action';
@@ -32,7 +32,7 @@ const TopRatedMovies = () => {
           Top Rated
         </Title>
       </Col>
-      <Carousel effect="fade" autoplay className={styles['carousel-top-rated']}>
+      <Carousel autoplay className={styles['carousel-top-rated']}>
         {data?.map((item) => (
           <Row className={styles['row-top-rated']} key={item.id}>
             <Col className={styles['col-top-rated-in']}>

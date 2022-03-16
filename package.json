@@ -84,8 +84,10 @@
     "tsc-files": "^1.1.3"
   },
   "lint-staged": {
-    "*.{ts,tsx}": "eslint --fix prettier --write",
-    "*.css": "stylelint --fix",
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
     "*.scss": "stylelint --fix"
   }
 }
