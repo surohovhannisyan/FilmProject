@@ -5,7 +5,7 @@ import { genres, languages } from './films.constants';
 
 import styles from './Films.module.scss';
 
-export const movieDataTableConfig = (openDrawer: any) => {
+export const movieDataTableConfig = () => {
   const columns = [
     { title: 'Original Title', dataIndex: 'original_title', key: 'original_title', width: '20%' },
     {
@@ -54,7 +54,6 @@ export const movieDataTableConfig = (openDrawer: any) => {
             <img
               src={`https://image.tmdb.org/t/p/w500/${poster}`}
               className={styles['img-table']}
-              onClick={openDrawer}
               id={poster}
             />
           </Col>

@@ -10,7 +10,8 @@ import {
 
 import { useAuth } from '../Hooks/useAuth';
 
-const MenuItem = Menu.Item;
+import styles from './Navbar.module.scss';
+
 const { Text } = Typography;
 
 function Navbar() {
@@ -25,32 +26,32 @@ function Navbar() {
 
   return (
     <Col>
-      <Menu mode="horizontal">
-        <Link to="/">
-          <MenuItem icon={<HomeOutlined />}>
-            <Text>Home</Text>
-          </MenuItem>
-        </Link>
-        {isLoggedIn && (
-          <Link to="/films">
-            <MenuItem icon={<OrderedListOutlined />}>
-              <Text>Films</Text>
-            </MenuItem>
+      <Menu mode="horizontal" theme="dark" className={styles.menumain}>
+        <Menu.Item key="home" icon={<HomeOutlined />}>
+          <Link to="/">
+            <Text className={styles.menuitemtext}>Home</Text>
           </Link>
+        </Menu.Item>
+        {isLoggedIn && (
+          <Menu.Item key="films" icon={<OrderedListOutlined />}>
+            <Link to="/films">
+              <Text className={styles.menuitemtext}>Films</Text>
+            </Link>
+          </Menu.Item>
         )}
         {!isLoggedIn && (
-          <Link to="/login">
-            <MenuItem icon={<LoginOutlined />}>
-              <Text>Log in</Text>
-            </MenuItem>
-          </Link>
+          <Menu.Item key="login" icon={<LoginOutlined />} className={styles.login}>
+            <Link to="/login">
+              <Text className={styles.menuitemtext}>Log in</Text>
+            </Link>
+          </Menu.Item>
         )}
         {isLoggedIn && (
-          <Link to="/login" onClick={logoutHandler}>
-            <MenuItem icon={<LogoutOutlined />}>
-              <Text>Log out</Text>
-            </MenuItem>
-          </Link>
+          <Menu.Item key="logout" icon={<LogoutOutlined />} className={styles.logout}>
+            <Link to="/login" onClick={logoutHandler}>
+              <Text className={styles.menuitemtext}>Log out</Text>
+            </Link>
+          </Menu.Item>
         )}
       </Menu>
     </Col>
