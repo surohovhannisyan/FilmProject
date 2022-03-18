@@ -5,7 +5,6 @@ import { byGenreURL, byQueryURL, topRatedURL, upcomingURL } from './Constants';
 
 export const getFilmByGenreService = async (genre: number): Promise<IMovieDataItems[]> => {
   const data = await axios.get(`${byGenreURL}${genre}`);
-
   return data.data.results;
 };
 

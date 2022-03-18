@@ -26,7 +26,7 @@ const UpcomingMovies = () => {
   }, []);
 
   return (
-    <Col>
+    <Col className={styles['upcoming-main']}>
       <Col>
         <Title level={3} className={styles['title-two']}>
           Upcoming

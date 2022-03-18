@@ -9,8 +9,9 @@ import styles from './Home.module.scss';
 
 function Home() {
   return (
-    <Col className={styles['top-rated']}>
+    <Col className={styles['home-main']}>
       <TopRatedMovies />
+      <hr />
       <UpcomingMovies />
     </Col>
   );

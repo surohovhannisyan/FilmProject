@@ -31,7 +31,7 @@ export const Films = () => {
   const { data } = useSelector((state: RootState) => state.film);
   const [title, setTitle] = useState<string>('');
   const [genre, setGenre] = useState<number>(16);
-
+  console.log(data);
   const { Option } = Select;
   const dispatch = useDispatch();
   const getFilmInfo = () => {
