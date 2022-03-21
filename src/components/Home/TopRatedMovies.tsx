@@ -7,7 +7,7 @@ import { getFilmDataUpcoming } from '../Redux/Action';
 
 import styles from './TopRatedMovies.module.scss';
 
-const { Title, Text } = Typography;
+const { Title } = Typography;
 
 const TopRatedMovies = () => {
   const { data } = useSelector((state: RootState) => state.film);
@@ -21,40 +21,70 @@ const TopRatedMovies = () => {
     dispatch(getFilmDataUpcoming());
   };
 
+  const datanew = data?.map((item, id) => {
+    return (
+      <Col className={styles.pattern} key={id}>
+        <Image src={imageURL(item.poster_path)} className={styles.newimg} />
+        <Col className={styles.titlewrapper}>
+          <Title level={5} className={styles.movietitle}>
+            {item.original_title}
+          </Title>
+        </Col>
+      </Col>
+    );
+  });
+
   useEffect(() => {
     getFilmInfoUpcoming();
   }, []);
 
   return (
-    <Col>
-      <Col>
-        <Title className={styles['title-one']} level={3}>
-          Top Rated
-        </Title>
-      </Col>
+    <Col className={styles['top-rated-wrapper']}>
       <Carousel autoplay className={styles['carousel-top-rated']}>
-        {data?.map((item) => (
-          <Row className={styles['row-top-rated']} key={item.id}>
-            <Col className={styles['col-top-rated-in']}>
-              <Col className={styles.pattern}>
-                <Image src={imageURL(item.poster_path)} />
-              </Col>
-              <Col className={styles.main}>
-                <Title level={4}>Title: {item.original_title}</Title>
-                <hr />
-                <Text>
-                  Release Date: {item.release_date} <br />
-                  Original language: {item.original_language} <br />
-                  Vote average: {item.vote_average} <br />
-                </Text>
-                <hr />
-                <Col>
-                  <Text strong>Overview:</Text> {item.overview}
-                </Col>
-              </Col>
+        <Row>
+          <Col className={styles.wrapper}>
+            <Col className={styles['wrapper-pattern']}>
+              {datanew && datanew[0]}
+              {datanew && datanew[1]}
+              {datanew && datanew[2]}
+              {datanew && datanew[3]}
+              {datanew && datanew[4]}
             </Col>
-          </Row>
-        ))}
+          </Col>
+        </Row>
+        <Row>
+          <Col className={styles.wrapper}>
+            <Col className={styles['wrapper-pattern']}>
+              {datanew && datanew[5]}
+              {datanew && datanew[6]}
+              {datanew && datanew[7]}
+              {datanew && datanew[8]}
+              {datanew && datanew[9]}
+            </Col>
+          </Col>
+        </Row>
+        <Row>
+          <Col className={styles.wrapper}>
+            <Col className={styles['wrapper-pattern']}>
+              {datanew && datanew[10]}
+              {datanew && datanew[11]}
+              {datanew && datanew[12]}
+              {datanew && datanew[13]}
+              {datanew && datanew[14]}
+            </Col>
+          </Col>
+        </Row>
+        <Row>
+          <Col className={styles.wrapper}>
+            <Col className={styles['wrapper-pattern']}>
+              {datanew && datanew[15]}
+              {datanew && datanew[16]}
+              {datanew && datanew[17]}
+              {datanew && datanew[18]}
+              {datanew && datanew[19]}
+            </Col>
+          </Col>
+        </Row>
       </Carousel>
     </Col>
   );
