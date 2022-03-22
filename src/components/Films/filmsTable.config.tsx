@@ -4,8 +4,11 @@ import { Tag, Col } from 'antd';
 import { genres, languages } from './films.constants';
 
 import styles from './Films.module.scss';
+import { IMovieDataItems } from './Films';
 
-export const movieDataTableConfig = () => {
+export const movieDataTableConfig = (
+  openModal: React.MouseEventHandler<HTMLImageElement> | undefined
+) => {
   const columns = [
     { title: 'Original Title', dataIndex: 'original_title', key: 'original_title', width: '20%' },
     {
@@ -48,13 +51,14 @@ export const movieDataTableConfig = () => {
       dataIndex: 'poster_path',
       key: 'poster_path',
       width: '20%',
-      render: (poster: string) => {
+      render: (poster: string, id: IMovieDataItems) => {
         return (
-          <Col className={styles['img-root']}>
+          <Col className={styles['img-root']} key={id.id}>
             <img
               src={`https://image.tmdb.org/t/p/w500/${poster}`}
               className={styles['img-table']}
-              id={poster}
+              id={`${id.id}`}
+              onClick={openModal}
             />
           </Col>
         );
