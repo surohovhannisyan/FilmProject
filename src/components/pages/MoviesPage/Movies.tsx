@@ -4,13 +4,13 @@ import ReactPlayer from 'react-player/lazy';
 import { useDispatch, useSelector } from 'react-redux';
 import { Select, Table, Col, Input, Modal, Carousel, Typography } from 'antd';
 
-import { getFilmDataByGenre, getFilmDataByQuery } from '../../../store/Redux/Action';
+import { getFilmDataByGenre, getFilmDataByQuery } from '../../../store/redux/action';
 import { RootState } from '../../../Reducers';
-import { movieDataTableConfig } from './filmsTable.config';
-import { genres } from './films.constants';
+import { movieDataTableConfig } from './moviesTable.config';
+import { genres, GenreId } from './movies.constants';
 
-import styles from './Films.module.scss';
-// import 'antd/dist/antd.css';
+import styles from './Movies.module.scss';
+import 'antd/dist/antd.css';
 
 export interface IMovieDataItems {
   adult: boolean;
@@ -44,10 +44,10 @@ interface IVideoItem {
 
 const { Title } = Typography;
 
-export const Films = () => {
+export const Movies = () => {
   const { data } = useSelector((state: RootState) => state.film);
   const [title, setTitle] = useState<string>('');
-  const [genre, setGenre] = useState<number>(16);
+  const [genre, setGenre] = useState<number>(GenreId.Animation);
   const [videoData, setVideoData] = useState([]);
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const { Option } = Select;
@@ -88,6 +88,10 @@ export const Films = () => {
       `https://api.themoviedb.org/3/movie/${e.currentTarget.id}/videos?api_key=15c32b97f897fcdcf60aac8f6e0746f4&language=en-US`
     );
     setVideoData(data.results);
+  };
+
+  const changeGenre = (e: React.MouseEvent<HTMLSpanElement>) => {
+    setGenre(+e.currentTarget.id);
   };
 
   return (
@@ -141,7 +145,7 @@ export const Films = () => {
       </Modal>
       <Col className={styles['film-table']}>
         <Table
-          columns={movieDataTableConfig(openModal)}
+          columns={movieDataTableConfig(openModal, changeGenre)}
           dataSource={data}
           className={styles['table-main']}
           pagination={false}
@@ -152,4 +156,4 @@ export const Films = () => {
   );
 };
 
-export default Films;
+export default Movies;

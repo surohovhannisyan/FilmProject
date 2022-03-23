@@ -1,13 +1,14 @@
 import React from 'react';
-import { Tag, Col } from 'antd';
+import { Tag, Col, Button } from 'antd';
 
-import { genres, languages } from './films.constants';
+import { genres, languages } from './movies.constants';
+import { IMovieDataItems } from './Movies';
 
-import styles from './Films.module.scss';
-import { IMovieDataItems } from './Films';
+import styles from './Movies.module.scss';
 
 export const movieDataTableConfig = (
-  openModal: React.MouseEventHandler<HTMLImageElement> | undefined
+  openModal: React.MouseEventHandler<HTMLImageElement> | undefined,
+  changeGenre: React.MouseEventHandler<HTMLSpanElement> | undefined
 ) => {
   const columns = [
     { title: 'Original Title', dataIndex: 'original_title', key: 'original_title', width: '20%' },
@@ -37,9 +38,16 @@ export const movieDataTableConfig = (
           for (let i = 0; i < genres.length; i++) {
             if (item === genres[i].key) {
               return (
-                <Tag key={genres[i].key} color={'blue'}>
-                  {genres[i].genre_name}
-                </Tag>
+                <Col key={genres[i].key}>
+                  <Tag
+                    id={`${genres[i].key}`}
+                    color={'blue'}
+                    className={styles.tag}
+                    onClick={changeGenre}
+                  >
+                    {genres[i].genre_name}
+                  </Tag>
+                </Col>
               );
             }
           }
@@ -53,13 +61,18 @@ export const movieDataTableConfig = (
       width: '20%',
       render: (poster: string, id: IMovieDataItems) => {
         return (
-          <Col className={styles['img-root']} key={id.id}>
-            <img
-              src={`https://image.tmdb.org/t/p/w500/${poster}`}
-              className={styles['img-table']}
-              id={`${id.id}`}
-              onClick={openModal}
-            />
+          <Col className={styles['pattern-main']}>
+            <Col className={styles['img-root']} key={id.id}>
+              <img
+                src={`https://image.tmdb.org/t/p/w500/${poster}`}
+                className={styles['img-table']}
+                id={`${id.id}`}
+                onClick={openModal}
+              />
+            </Col>
+            <Button id={`${id.id}`} className={styles.watchlater}>
+              Watch Later
+            </Button>
           </Col>
         );
       },

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Typography, Col, Carousel, Row, Image } from 'antd';
 
 import { RootState } from '../../../Reducers';
-import { getFilmDataUpcoming } from '../../../store/Redux/Action';
+import { getFilmDataUpcoming } from '../../../store/redux/action';
 
 import styles from './TopRatedMovies.module.scss';
 

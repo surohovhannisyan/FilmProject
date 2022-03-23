@@ -3,7 +3,7 @@ import axios from 'axios';
 import { notification } from 'antd';
 import { History, LocationState } from 'history';
 
-import { ContextValueInterface } from '../../../store/Store Auth/auth-context';
+import { ContextValueInterface } from '../../../store/storeAuth/auth-context';
 import { signInURL, signUpURL } from './login.constants';
 
 interface ISignInCredentals {

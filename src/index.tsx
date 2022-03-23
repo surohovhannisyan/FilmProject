@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 
 import reportWebVitals from './reportWebVitals';
-import { AuthContextProvider } from './store/Store Auth/auth-context';
+import { AuthContextProvider } from './store/storeAuth/auth-context';
 import rootReducer from './Reducers';
 import App from './App';
 

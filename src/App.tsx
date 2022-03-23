@@ -4,9 +4,9 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import PrivateRoute from './shared/PrivateRoutes/PirvateRoutes';
 import Navbar from './shared/Navbar/Navbar';
 import Loading from './shared/Loading/Loading';
-const Home = React.lazy(() => import('./components/pages/Home/Home'));
-const Films = React.lazy(() => import('./components/pages/Films/Films'));
-const Login = React.lazy(() => import('./components/pages/Login/Login'));
+const Home = React.lazy(() => import('./components/pages/HomePage/Home'));
+const Movies = React.lazy(() => import('./components/pages/MoviesPage/Movies'));
+const Login = React.lazy(() => import('./components/pages/LoginPage/Login'));
 const NotFound = React.lazy(() => import('./shared/ErrorPage/ErrorPage'));
 
 import 'antd/dist/antd.css';
@@ -18,7 +18,7 @@ function App() {
       <Suspense fallback={<Loading />}>
         <Switch>
           <Route path="/" exact component={Home} />
-          <PrivateRoute path="/films" component={Films} />
+          <PrivateRoute path="/films" component={Movies} />
           <Route path="/login" component={Login} />
           <Route path="*" component={NotFound} />
         </Switch>

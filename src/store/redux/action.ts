@@ -1,4 +1,4 @@
-import { IMovieDataItems } from '../../components/pages/Films/Films';
+import { IMovieDataItems } from '../../components/pages/MoviesPage/Movies';
 import {
   GET_FILM_DATA,
   GET_FILM_DATA_FAILED,
@@ -8,13 +8,13 @@ import {
   GET_FILM_TOP_RATED_FAILED,
   GET_FILM_UPCOMING,
   GET_FILM_UPCOMING_FAILED,
-} from './ActionType';
+} from './actiontype';
 import {
   getFilmByGenreService,
   getFilmByQueryService,
   getFilmTopRated,
   getFilmUpcoming,
-} from './Services';
+} from './services';
 
 interface IDispatch {
   (arg: { type: string; payload: IMovieDataItems[] | { data: null; error: unknown } }): void;

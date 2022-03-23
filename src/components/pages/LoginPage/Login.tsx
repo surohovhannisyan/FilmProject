@@ -77,7 +77,13 @@ const Login = () => {
         <Text strong className={styles.label}>
           Password
         </Text>
-        <Input value={password} onChange={passChangeHandler} type="password" minLength={8} />
+        <Input
+          value={password}
+          onChange={passChangeHandler}
+          pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+          type="password"
+          minLength={8}
+        />
         <Button onClick={submitHandler}>{btnValue}</Button>
         <Text underline>
           <a onClick={changeHandler}>{titleTwo}</a>

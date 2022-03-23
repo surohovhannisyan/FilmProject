@@ -1,6 +1,6 @@
 .films-root {
   margin: 5px auto;
-  
+
   .search-sect {
     width: 100%;
     margin: auto;
@@ -21,8 +21,19 @@
     right: 0;
   }
 
+  .pattern-main {
+    text-align: center;
+  }
+
+  .watchlater {
+    width: 90%;
+    margin: 5px;
+    border: 1px solid #001529;
+    box-shadow: 0 0 2px 2px #001529;
+  }
+
   .img-root:hover {
-    background: rgb(34 200 255);
+    background: #0a5397;
   }
 
   .img-table {
@@ -42,5 +53,9 @@
 
   .label-select {
     margin: 5px;
+  }
+
+  span.tag:hover {
+    cursor: pointer;
   }
 }

@@ -9,8 +9,8 @@ import {
   GET_FILM_TOP_RATED_FAILED,
   GET_FILM_UPCOMING,
   GET_FILM_UPCOMING_FAILED,
-} from './ActionType';
-import { IMovieDataItems } from '../../components/pages/Films/Films';
+} from './actiontype';
+import { IMovieDataItems } from '../../components/pages/MoviesPage/Movies';
 
 export interface IReducerState {
   data?: IMovieDataItems[];
