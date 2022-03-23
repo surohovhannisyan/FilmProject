@@ -4,8 +4,8 @@ import ReactPlayer from 'react-player/lazy';
 import { useDispatch, useSelector } from 'react-redux';
 import { Select, Table, Col, Input, Modal, Carousel, Typography } from 'antd';
 
-import { getFilmDataByGenre, getFilmDataByQuery } from '../Redux/Action';
-import { RootState } from '../../Reducers';
+import { getFilmDataByGenre, getFilmDataByQuery } from '../../../store/Redux/Action';
+import { RootState } from '../../../Reducers';
 import { movieDataTableConfig } from './filmsTable.config';
 import { genres } from './films.constants';
 

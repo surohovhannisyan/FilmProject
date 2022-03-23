@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Col, Row, Carousel, Typography, Image } from 'antd';
 
-import { RootState } from '../../Reducers';
-import { getFilmDataTopRated } from '../Redux/Action';
+import { RootState } from '../../../Reducers';
+import { getFilmDataTopRated } from '../../../store/Redux/Action';
 
 import styles from './UpcomingMovies.module.scss';
 

@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { filmData, upcomingFilmData } from './components/Redux/Reducer';
+import { filmData, upcomingFilmData } from './store/Redux/Reducer';
 
 const rootReducer = combineReducers({
   film: filmData,

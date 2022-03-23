@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { IMovieDataItems } from '../Films/Films';
+import { IMovieDataItems } from '../../components/pages/Films/Films';
 import { byGenreURL, byQueryURL, topRatedURL, upcomingURL } from './Constants';
 
 export const getFilmByGenreService = async (genre: number): Promise<IMovieDataItems[]> => {

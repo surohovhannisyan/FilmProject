@@ -8,7 +8,7 @@ import {
   LoginOutlined,
 } from '@ant-design/icons';
 
-import { useAuth } from '../Hooks/useAuth';
+import { useAuth } from '../../hooks/useAuth';
 
 import styles from './Navbar.module.scss';
 

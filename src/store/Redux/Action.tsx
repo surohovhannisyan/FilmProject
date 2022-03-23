@@ -1,4 +1,4 @@
-import { IMovieDataItems } from '../Films/Films';
+import { IMovieDataItems } from '../../components/pages/Films/Films';
 import {
   GET_FILM_DATA,
   GET_FILM_DATA_FAILED,

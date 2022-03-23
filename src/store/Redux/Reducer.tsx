@@ -10,7 +10,7 @@ import {
   GET_FILM_UPCOMING,
   GET_FILM_UPCOMING_FAILED,
 } from './ActionType';
-import { IMovieDataItems } from '../Films/Films';
+import { IMovieDataItems } from '../../components/pages/Films/Films';
 
 export interface IReducerState {
   data?: IMovieDataItems[];

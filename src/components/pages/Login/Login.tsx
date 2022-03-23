@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { Form, Input, Button, Typography, Col } from 'antd';
 
 import { signIn, signUp } from './loginApiCall';
-import { useAuth } from '../Hooks/useAuth';
+import { useAuth } from '../../../hooks/useAuth';
 
 import 'antd/dist/antd.css';
 import styles from './Login.module.scss';
