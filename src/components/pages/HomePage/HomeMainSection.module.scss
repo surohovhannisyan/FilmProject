@@ -1,0 +1,25 @@
+.root {
+  .title {
+    text-align: center;
+    margin: 15px;
+  }
+
+  .carousel-marvel {
+    width: 90%;
+    margin: 15px auto;
+    border: 1px solid green;
+    padding: 5px;
+
+    .section {
+      border: 1px solid black;
+      padding: 15px;
+
+      .imgwrapper {
+        width: 50%;
+        margin: auto;
+        border: 1px solid red;
+        padding: 5px;
+      }
+    }
+  }
+}

@@ -1,0 +1,61 @@
+.films-root {
+  margin: 5px auto;
+
+  .search-sect {
+    width: 100%;
+    margin: auto;
+    display: flex;
+    padding: 10px;
+    background: linear-gradient(transparent, rgb(240 240 240), rgb(240 240 240));
+  }
+
+  .film-search {
+    width: 25%;
+  }
+
+  input {
+    border: 1px solid #001529;
+    width: 20%;
+    margin: 5px;
+    position: absolute;
+    right: 0;
+  }
+
+  .pattern-main {
+    text-align: center;
+  }
+
+  .watchlater {
+    width: 90%;
+    margin: 5px;
+    border: 1px solid #001529;
+    box-shadow: 0 0 2px 2px #001529;
+  }
+
+  .img-root:hover {
+    background: #0a5397;
+  }
+
+  .img-table {
+    width: 100%;
+    padding: 5px;
+  }
+
+  .img-table:hover {
+    cursor: pointer;
+  }
+
+  .select-genre {
+    width: 100px;
+    margin: 5px;
+    border-radius: 3px;
+  }
+
+  .label-select {
+    margin: 5px;
+  }
+
+  span.tag:hover {
+    cursor: pointer;
+  }
+}

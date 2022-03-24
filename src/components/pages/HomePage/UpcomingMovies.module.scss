@@ -1,0 +1,48 @@
+.upcoming-main {
+  .title-two {
+    width: 65%;
+    text-align: center;
+    margin: auto;
+    padding: 10px;
+  }
+
+  .carousel-upcoming {
+    width: 100%;
+    margin: auto;
+    border-radius: 15px;
+
+    .row-upcoming {
+      padding: 5px;
+
+      .col-upcoming-in {
+        width: 70%;
+        margin: auto;
+        display: flex;
+        justify-content: space-evenly;
+        padding: 15px;
+
+        .upcoming-pattern {
+          width: 15%;
+          margin: 10px;
+
+          img {
+            width: 100%;
+            border-radius: 5px;
+            box-shadow: 0 0 3px 3px #456a8b;
+          }
+        }
+
+        .upcoming-main {
+          width: 75%;
+          margin: 10px;
+          padding: 10px;
+
+          hr {
+            border: none;
+            box-shadow: 0 0 1px 1px #456a8b;
+          }
+        }
+      }
+    }
+  }
+}

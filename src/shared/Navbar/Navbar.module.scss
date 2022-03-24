@@ -1,0 +1,17 @@
+.menumain {
+  .menuitemtext {
+    color: white;
+  }
+
+  li.login {
+    position: absolute;
+    right: 0;
+    color: green;
+  }
+
+  li.logout {
+    position: absolute;
+    right: 0;
+    color: red;
+  }
+}
