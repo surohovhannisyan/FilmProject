@@ -1,24 +1,101 @@
 .root {
-  .title {
-    text-align: center;
-    margin: 15px;
-  }
+  .carousel-header {
+    width: 100%;
+    margin: auto;
 
-  .carousel-marvel {
-    width: 90%;
-    margin: 15px auto;
-    border: 1px solid green;
-    padding: 5px;
+    .carousel-section {
+      .section-wrapper {
+        position: relative;
 
-    .section {
-      border: 1px solid black;
-      padding: 15px;
+        .section-background {
+          width: 100%;
+          height: 600px;
+          position: relative;
+          opacity: 0.2;
+          z-index: 2;
+        }
 
-      .imgwrapper {
-        width: 50%;
-        margin: auto;
-        border: 1px solid red;
-        padding: 5px;
+        .section-main {
+          width: 100%;
+          height: auto;
+          padding: 30px;
+          position: absolute;
+          z-index: 2;
+          top: 0;
+          color: black;
+          text-align: center;
+          display: flex;
+          justify-content: space-around;
+
+          .img-sect {
+            width: 20%;
+            padding: 15px;
+
+            img {
+              border-radius: 5px;
+              height: auto;
+              box-shadow: 0 0 2px 2px;
+            }
+          }
+
+          .about-sect {
+            width: 70%;
+            padding: 15px;
+            text-align: left;
+            color: white;
+
+            .title {
+              padding: 15px;
+
+              h2 {
+                color: rgb(231 184 97);
+              }
+            }
+
+            .overview {
+              padding: 15px;
+              font-size: 17px;
+
+              span {
+                color: white;
+
+                b {
+                  color: wheat;
+                }
+              }
+            }
+
+            .genres {
+              padding: 15px;
+
+              h5 {
+                color: wheat;
+              }
+
+              span:hover {
+                color: wheat;
+                border: 1px solid wheat;
+                background: transparent;
+                cursor: pointer;
+              }
+            }
+
+            .buttons {
+              padding: 15px;
+
+              button {
+                background: transparent;
+                color: wheat;
+                border: 1px solid wheat;
+              }
+
+              button:hover {
+                color: rgb(252 183 55);
+                border: 1px solid rgb(252 183 55);
+              }
+            }
+          }
+        }
       }
     }
   }

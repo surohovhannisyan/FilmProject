@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Typography, Col, Carousel, Row, Image } from 'antd';
+import _ from 'lodash';
 
 import { RootState } from '../../../Reducers';
 import { getFilmDataUpcoming } from '../../../store/redux/action';
@@ -21,15 +22,10 @@ const TopRatedMovies = () => {
     dispatch(getFilmDataUpcoming());
   };
 
-  const datanew = data?.map((item, id) => {
+  const topRatedElements = data?.map((item, id) => {
     return (
       <Col className={styles.pattern} key={id}>
         <Image src={imageURL(item.poster_path)} className={styles.newimg} />
-        <Col className={styles.titlewrapper}>
-          <Title level={5} className={styles.movietitle}>
-            {item.original_title}
-          </Title>
-        </Col>
       </Col>
     );
   });
@@ -40,48 +36,23 @@ const TopRatedMovies = () => {
 
   return (
     <Col className={styles['top-rated-wrapper']}>
-      <Carousel autoplay className={styles['carousel-top-rated']}>
+      <Col className={styles.titlewrapper}>
+        <Title level={3} className={styles.movietitle}>
+          Top Rated
+        </Title>
+      </Col>
+      <Carousel autoplay dots={false} autoplaySpeed={5000} className={styles['carousel-top-rated']}>
         <Row>
           <Col className={styles.wrapper}>
             <Col className={styles['wrapper-pattern']}>
-              {datanew && datanew[0]}
-              {datanew && datanew[1]}
-              {datanew && datanew[2]}
-              {datanew && datanew[3]}
-              {datanew && datanew[4]}
+              {topRatedElements && topRatedElements.slice(0, 10)}
             </Col>
           </Col>
         </Row>
         <Row>
           <Col className={styles.wrapper}>
             <Col className={styles['wrapper-pattern']}>
-              {datanew && datanew[5]}
-              {datanew && datanew[6]}
-              {datanew && datanew[7]}
-              {datanew && datanew[8]}
-              {datanew && datanew[9]}
-            </Col>
-          </Col>
-        </Row>
-        <Row>
-          <Col className={styles.wrapper}>
-            <Col className={styles['wrapper-pattern']}>
-              {datanew && datanew[10]}
-              {datanew && datanew[11]}
-              {datanew && datanew[12]}
-              {datanew && datanew[13]}
-              {datanew && datanew[14]}
-            </Col>
-          </Col>
-        </Row>
-        <Row>
-          <Col className={styles.wrapper}>
-            <Col className={styles['wrapper-pattern']}>
-              {datanew && datanew[15]}
-              {datanew && datanew[16]}
-              {datanew && datanew[17]}
-              {datanew && datanew[18]}
-              {datanew && datanew[19]}
+              {topRatedElements && topRatedElements.slice(10, 20)}
             </Col>
           </Col>
         </Row>

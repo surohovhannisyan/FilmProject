@@ -9,6 +9,8 @@ import {
   GET_FILM_TOP_RATED_FAILED,
   GET_FILM_UPCOMING,
   GET_FILM_UPCOMING_FAILED,
+  GET_MOVIES_POPULAR,
+  GET_MOVIES_POPULAR_FAILED,
 } from './actiontype';
 import { IMovieDataItems } from '../../components/pages/MoviesPage/Movies';
 
@@ -51,6 +53,17 @@ export const upcomingFilmData: Reducer<IReducerState, IReducerAction> = (state, 
     case GET_FILM_UPCOMING:
       return { ...state, data: action.payload };
     case GET_FILM_UPCOMING_FAILED:
+      return { ...state, error: action.payload };
+    default:
+      return { ...state };
+  }
+};
+
+export const mostPopularMoviesData: Reducer<IReducerState, IReducerAction> = (state, action) => {
+  switch (action.type) {
+    case GET_MOVIES_POPULAR:
+      return { ...state, data: action.payload };
+    case GET_MOVIES_POPULAR_FAILED:
       return { ...state, error: action.payload };
     default:
       return { ...state };

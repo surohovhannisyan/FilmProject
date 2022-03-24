@@ -8,17 +8,45 @@ import {
   GET_FILM_TOP_RATED_FAILED,
   GET_FILM_UPCOMING,
   GET_FILM_UPCOMING_FAILED,
+  GET_MOVIES_POPULAR,
+  GET_MOVIES_POPULAR_FAILED,
 } from './actiontype';
 import {
   getFilmByGenreService,
   getFilmByQueryService,
   getFilmTopRated,
   getFilmUpcoming,
+  getTvShowPopular,
 } from './services';
 
 interface IDispatch {
   (arg: { type: string; payload: IMovieDataItems[] | { data: null; error: unknown } }): void;
 }
+
+export const getMoviesPopular = () => {
+  return async (dispatch: IDispatch) => {
+    try {
+      const response = await getTvShowPopular();
+      dispatch(getPopular(response));
+    } catch (error) {
+      dispatch(getPopularFailed(error));
+    }
+  };
+
+  function getPopular(data: IMovieDataItems[]) {
+    return {
+      type: GET_MOVIES_POPULAR,
+      payload: data,
+    };
+  }
+
+  function getPopularFailed(error: string | unknown) {
+    return {
+      type: GET_MOVIES_POPULAR_FAILED,
+      payload: { data: null, error: error },
+    };
+  }
+};
 
 export const getFilmDataUpcoming = () => {
   return async (dispatch: IDispatch) => {

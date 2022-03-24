@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import { IMovieDataItems } from '../../components/pages/MoviesPage/Movies';
-import { byGenreURL, byQueryURL, topRatedURL, upcomingURL } from './constants';
+import { byGenreURL, byQueryURL, popularURL, topRatedURL, upcomingURL } from './constants';
 
 export const getFilmByGenreService = async (genre: number): Promise<IMovieDataItems[]> => {
   const data = await axios.get(`${byGenreURL}${genre}`);
@@ -22,6 +22,12 @@ export const getFilmTopRated = async (): Promise<IMovieDataItems[]> => {
 
 export const getFilmUpcoming = async (): Promise<IMovieDataItems[]> => {
   const data = await axios.get(`${upcomingURL}`);
+
+  return data.data.results;
+};
+
+export const getTvShowPopular = async (): Promise<IMovieDataItems[]> => {
+  const data = await axios.get(`${popularURL}`);
 
   return data.data.results;
 };
