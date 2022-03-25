@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import ReactPlayer from 'react-player/lazy';
+import ReactPlayer from 'react-player';
 import { useDispatch, useSelector } from 'react-redux';
 import { Select, Table, Col, Input, Modal, Carousel, Typography } from 'antd';
 
@@ -48,8 +48,10 @@ export const Movies = () => {
   const { data } = useSelector((state: RootState) => state.film);
   const [title, setTitle] = useState<string>('');
   const [genre, setGenre] = useState<number>(GenreId.Animation);
-  const [videoData, setVideoData] = useState([]);
+  const [currentId, setCurrentId] = useState<string>();
+  const [videoData, setVideoData] = useState<IVideoItem[]>([]);
   const [isVisible, setIsVisible] = useState<boolean>(false);
+
   const { Option } = Select;
 
   const dispatch = useDispatch();
@@ -82,17 +84,26 @@ export const Movies = () => {
     setIsVisible(false);
   };
 
-  const openModal = async (e: React.MouseEvent<HTMLImageElement>) => {
-    setIsVisible(true);
+  const getVideoData = async () => {
     const { data } = await axios.get(
-      `https://api.themoviedb.org/3/movie/${e.currentTarget.id}/videos?api_key=15c32b97f897fcdcf60aac8f6e0746f4&language=en-US`
+      `https://api.themoviedb.org/3/movie/${currentId}/videos?api_key=15c32b97f897fcdcf60aac8f6e0746f4&language=en-US`
     );
     setVideoData(data.results);
   };
 
+  const openModal = async (e: React.MouseEvent<HTMLImageElement>) => {
+    setCurrentId(e.currentTarget.id);
+    setIsVisible(true);
+  };
+
   const changeGenre = (e: React.MouseEvent<HTMLSpanElement>) => {
     setGenre(+e.currentTarget.id);
+    window.scrollTo(0, 0);
   };
+
+  useEffect(() => {
+    getVideoData();
+  }, [currentId]);
 
   return (
     <Col className={styles['films-root']}>
@@ -103,7 +114,7 @@ export const Movies = () => {
           className={styles['select-genre']}
         >
           {genres.map((item) => (
-            <Option key={item.key} value={item.key}>
+            <Option key={item.key} value={item.key} className={styles['selct-option']}>
               {item.genre_name}
             </Option>
           ))}
@@ -116,16 +127,18 @@ export const Movies = () => {
         />
       </Col>
       <Modal
-        title="Videos"
         visible={isVisible}
-        closable={true}
-        onOk={onCancel}
+        closable={false}
         onCancel={onCancel}
+        footer={null}
+        maskStyle={{ background: 'black', opacity: 0.7 }}
+        destroyOnClose={true}
         width={'45%'}
+        className={styles.modal}
       >
-        <Carousel>
+        <Carousel className={styles['modal-main']} dotPosition="bottom">
           {videoData?.map((item: IVideoItem) => (
-            <Col key={item.id}>
+            <Col key={item.id} className={styles['modal-sect']}>
               <Col className={styles.titlemodal}>
                 <Title level={3}>{item.name}</Title>
               </Col>
