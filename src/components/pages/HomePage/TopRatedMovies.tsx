@@ -5,6 +5,7 @@ import _ from 'lodash';
 
 import { RootState } from '../../../Reducers';
 import { getFilmDataUpcoming } from '../../../store/redux/action';
+import { imageURL } from './home.constants';
 
 import styles from './TopRatedMovies.module.scss';
 
@@ -13,10 +14,6 @@ const { Title } = Typography;
 const TopRatedMovies = () => {
   const { data } = useSelector((state: RootState) => state.film);
   const dispatch = useDispatch();
-
-  const imageURL = (path: string) => {
-    return `https://image.tmdb.org/t/p/w500/${path}`;
-  };
 
   const getFilmInfoUpcoming = () => {
     dispatch(getFilmDataUpcoming());

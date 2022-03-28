@@ -4,6 +4,7 @@ import { Col, Row, Carousel, Typography, Image } from 'antd';
 
 import { RootState } from '../../../Reducers';
 import { getFilmDataTopRated } from '../../../store/redux/action';
+import { imageURL } from './home.constants';
 
 import styles from './UpcomingMovies.module.scss';
 
@@ -12,10 +13,6 @@ const { Title } = Typography;
 const UpcomingMovies = () => {
   const { data } = useSelector((state: RootState) => state.upcomingFilms);
   const dispatch = useDispatch();
-
-  const imageURL = (path: string) => {
-    return `https://image.tmdb.org/t/p/w500/${path}`;
-  };
 
   const getFilmInfo = () => {
     dispatch(getFilmDataTopRated());

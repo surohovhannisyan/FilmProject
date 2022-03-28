@@ -5,6 +5,7 @@ import { Carousel, Typography, Col, Tag, Button, Image } from 'antd';
 import { RootState } from '../../../Reducers';
 import { getMoviesPopular } from '../../../store/redux/action';
 import { genres, languages } from '../MoviesPage/movies.constants';
+import { imageURL } from './home.constants';
 
 import styles from './HomeMainSection.module.scss';
 
@@ -29,10 +30,6 @@ const HomeMainSection = () => {
   useEffect(() => {
     getMostPopular();
   }, []);
-
-  const imageURL = (path: string) => {
-    return `https://image.tmdb.org/t/p/original/${path}`;
-  };
 
   return (
     <Col className={styles.root}>
