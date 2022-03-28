@@ -27,7 +27,7 @@ export const signIn = async ({ username, password, authCtx, history }: ISignInCr
       description: 'Successfully Signed in',
     });
     authCtx.login(response.data.idToken);
-    history.push('/films');
+    history.push('/movies');
   } catch (err) {
     notification.error({
       message: `Authentication failed`,

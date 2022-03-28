@@ -1,6 +1,6 @@
 import React from 'react';
 import { Menu, Typography, Col } from 'antd';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import {
   HomeOutlined,
   OrderedListOutlined,
@@ -25,17 +25,17 @@ function Navbar() {
   };
 
   return (
-    <Col>
-      <Menu mode="horizontal" theme="dark" className={styles.menumain}>
-        <Menu.Item key="home" icon={<HomeOutlined />}>
+    <Col className={styles['menu-root']}>
+      <Menu mode="horizontal" theme="dark" className={styles.menumain} selectedKeys={['']}>
+        <Menu.Item key="home" icon={<HomeOutlined />} className={styles.home}>
           <Link to="/">
             <Text className={styles.menuitemtext}>Home</Text>
           </Link>
         </Menu.Item>
         {isLoggedIn && (
-          <Menu.Item key="films" icon={<OrderedListOutlined />}>
-            <Link to="/films">
-              <Text className={styles.menuitemtext}>Films</Text>
+          <Menu.Item key="movies" icon={<OrderedListOutlined />} className={styles.movies}>
+            <Link to="/movies">
+              <Text className={styles.menuitemtext}>Movies</Text>
             </Link>
           </Menu.Item>
         )}
