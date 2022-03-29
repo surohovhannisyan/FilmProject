@@ -1,21 +1,44 @@
 .login-card {
   width: 100%;
-  margin: 10px auto;
+  margin: auto;
   text-align: center;
-  background: linear-gradient(transparent, #d2e7fc, transparent);
+  background: #001529;
   padding: 15px;
+  position: absolute;
+  height: 100%;
+  border-top: 1px solid rgb(241 194 107);
+
+  h4 {
+    color: wheat;
+  }
 
   input {
     width: 30%;
-    box-shadow: 1px 1px 3px 3px #61b3ff;
+    border: none;
+    color: wheat;
+    background: transparent;
+    border-bottom: 1px solid rgb(241 194 107);
     margin: 5px auto;
+    caret-color: rgb(241 194 107);
+  }
+
+  input:focus {
+    color: wheat;
+    border-bottom: 1px solid rgb(241 194 107);
+    box-shadow: 0 0 0 0;
+  }
+
+  input:hover {
+    border-bottom: 1px solid rgb(241 194 107);
   }
 
   .label {
     display: block;
+    color: wheat;
   }
 
   input:invalid {
+    border: none;
     box-shadow: 1px 1px 3px 3px #fa2d2d;
     color: red;
   }
@@ -23,7 +46,31 @@
   button {
     width: 15%;
     display: block;
-    box-shadow: 1px 1px 3px 3px #61b3ff;
+    background: transparent;
+    border: 1px solid rgb(241 194 107);
+    color: rgb(241 194 107);
     margin: 10px auto;
+  }
+
+  button:hover {
+    color: rgb(241 194 107);
+    background: transparent;
+    border: 1px solid rgb(168 113 10);
+    box-shadow: 0 0 3px 3px rgb(168 113 10);
+  }
+
+  button:focus {
+    color: rgb(241 194 107);
+    background: transparent;
+    border: 1px solid rgb(168 113 10);
+    box-shadow: 0 0 3px 3px rgb(168 113 10);
+  }
+
+  a {
+    color: rgb(241 194 107);
+  }
+
+  a:hover {
+    color: rgb(168 113 10);
   }
 }

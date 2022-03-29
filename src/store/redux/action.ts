@@ -1,4 +1,4 @@
-import { IMovieDataItems } from '../../components/pages/MoviesPage/Movies';
+import { IMovieDataItems, IVideoItem } from '../../components/pages/MoviesPage/Movies';
 import {
   GET_FILM_DATA,
   GET_FILM_DATA_FAILED,
@@ -10,6 +10,8 @@ import {
   GET_FILM_UPCOMING_FAILED,
   GET_MOVIES_POPULAR,
   GET_MOVIES_POPULAR_FAILED,
+  GET_VIDEO_DATA,
+  GET_VIDEO_DATA_FAILED,
 } from './actiontype';
 import {
   getFilmByGenreService,
@@ -17,10 +19,15 @@ import {
   getFilmTopRated,
   getFilmUpcoming,
   getTvShowPopular,
+  getVideoData,
 } from './services';
 
 interface IDispatch {
   (arg: { type: string; payload: IMovieDataItems[] | { data: null; error: unknown } }): void;
+}
+
+interface IVideoDispatch {
+  (arg: { type: string; payload: IVideoItem[] | { data: null; error: unknown } }): void;
 }
 
 export const getMoviesPopular = () => {
@@ -39,10 +46,33 @@ export const getMoviesPopular = () => {
       payload: data,
     };
   }
-
   function getPopularFailed(error: string | unknown) {
     return {
       type: GET_MOVIES_POPULAR_FAILED,
+      payload: { data: null, error: error },
+    };
+  }
+};
+
+export const getMovieVideoData = (movieID: string | null | undefined) => {
+  return async (dispatch: IVideoDispatch) => {
+    try {
+      const response = await getVideoData(movieID);
+      dispatch(getVideo(response));
+    } catch (error) {
+      dispatch(getVideoFailed(error));
+    }
+  };
+
+  function getVideo(data: IVideoItem[]) {
+    return {
+      type: GET_VIDEO_DATA,
+      payload: data,
+    };
+  }
+  function getVideoFailed(error: string | unknown) {
+    return {
+      type: GET_VIDEO_DATA_FAILED,
       payload: { data: null, error: error },
     };
   }

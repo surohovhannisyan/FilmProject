@@ -11,11 +11,12 @@ export const movieDataTableConfig = (
   changeGenre: React.MouseEventHandler<HTMLSpanElement> | undefined
 ) => {
   const columns = [
-    { title: 'Original Title', dataIndex: 'original_title', key: 'original_title', width: '20%' },
+    { title: 'Original Title', dataIndex: 'original_title', key: 'original_title', width: '15%' },
     {
       title: 'Original Language',
       dataIndex: 'original_language',
       key: 'original_language',
+      width: '15%',
       render: (language: string) => {
         for (let i = 0; i < languages.length; i++) {
           if (language === languages[i].key) {
@@ -24,14 +25,14 @@ export const movieDataTableConfig = (
         }
       },
     },
-    { title: 'Release Date', dataIndex: 'release_date', key: 'release_date', width: '15%' },
-    { title: 'Vote Average', dataIndex: 'vote_average', key: 'vote_average' },
-    { title: 'Overview', dataIndex: 'overview', key: 'overview', width: '30%' },
+    { title: 'Release Date', dataIndex: 'release_date', key: 'release_date', width: '10%' },
+    { title: 'Vote Average', dataIndex: 'vote_average', key: 'vote_average', width: '10%' },
+    { title: 'Overview', dataIndex: 'overview', key: 'overview', width: '25%' },
     {
       title: 'Genres',
       dataIndex: 'genre_ids',
       key: 'genre_ids',
-      width: '20%',
+      width: '10%',
       tags: [],
       render: (genre: number[]) => {
         return genre.map((item: number) => {
@@ -58,7 +59,7 @@ export const movieDataTableConfig = (
       title: 'Poster',
       dataIndex: 'poster_path',
       key: 'poster_path',
-      width: '20%',
+      width: '30%',
       render: (poster: string, id: IMovieDataItems) => {
         return (
           <Col className={styles['pattern-main']}>

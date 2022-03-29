@@ -3,3 +3,7 @@ export const byQueryURL = `https://api.themoviedb.org/3/search/movie?api_key=d62
 export const topRatedURL = `https://api.themoviedb.org/3/movie/top_rated?api_key=15c32b97f897fcdcf60aac8f6e0746f4&language=en-US&page=1`;
 export const upcomingURL = `https://api.themoviedb.org/3/movie/upcoming?api_key=15c32b97f897fcdcf60aac8f6e0746f4&language=en-US&page=1`;
 export const popularURL = `https://api.themoviedb.org/3/tv/popular?api_key=15c32b97f897fcdcf60aac8f6e0746f4&language=en-US&page=1`;
+
+export const videoURL = (movieID: string | null | undefined) => {
+  return `https://api.themoviedb.org/3/movie/${movieID}/videos?api_key=15c32b97f897fcdcf60aac8f6e0746f4&language=en-US`;
+};
