@@ -4,7 +4,11 @@ import ReactPlayer from 'react-player';
 import { useDispatch, useSelector } from 'react-redux';
 import { Select, Table, Col, Input, Modal, Carousel, Typography } from 'antd';
 
-import { getFilmDataByGenre, getFilmDataByQuery } from '../../../store/redux/action';
+import {
+  getFilmDataByGenre,
+  getFilmDataByQuery,
+  getMovieVideoData,
+} from '../../../store/redux/action';
 import { RootState } from '../../../Reducers';
 import { movieDataTableConfig } from './moviesTable.config';
 import { genres, GenreId } from './movies.constants';
@@ -29,7 +33,7 @@ export interface IMovieDataItems {
   vote_count: number;
 }
 
-interface IVideoItem {
+export interface IVideoItem {
   id: string;
   iso_639_1: string;
   iso_3166_1: string;
@@ -46,10 +50,11 @@ const { Title } = Typography;
 
 export const Movies = () => {
   const { data } = useSelector((state: RootState) => state.film);
+  const movieVideoData = useSelector((state: RootState) => state.videos);
+
   const [title, setTitle] = useState<string>('');
   const [genre, setGenre] = useState<number>(GenreId.Animation);
-  const [currentId, setCurrentId] = useState<string>();
-  const [videoData, setVideoData] = useState<IVideoItem[]>([]);
+  const [currentId, setCurrentId] = useState<string | null>();
   const [isVisible, setIsVisible] = useState<boolean>(false);
 
   const { Option } = Select;
@@ -63,13 +68,9 @@ export const Movies = () => {
     dispatch(getFilmDataByQuery(title));
   };
 
-  useEffect(() => {
-    getFilmInfo();
-  }, [genre]);
-
-  useEffect(() => {
-    getFilmBySearch();
-  }, [title]);
+  const getMovieVideo = () => {
+    dispatch(getMovieVideoData(currentId));
+  };
 
   const selectChangeHandler = (value: number) => {
     setGenre(value);
@@ -84,13 +85,6 @@ export const Movies = () => {
     setIsVisible(false);
   };
 
-  const getVideoData = async () => {
-    const { data } = await axios.get(
-      `https://api.themoviedb.org/3/movie/${currentId}/videos?api_key=15c32b97f897fcdcf60aac8f6e0746f4&language=en-US`
-    );
-    setVideoData(data.results);
-  };
-
   const openModal = async (e: React.MouseEvent<HTMLImageElement>) => {
     setCurrentId(e.currentTarget.id);
     setIsVisible(true);
@@ -102,8 +96,16 @@ export const Movies = () => {
   };
 
   useEffect(() => {
-    getVideoData();
+    getMovieVideo();
   }, [currentId]);
+
+  useEffect(() => {
+    getFilmInfo();
+  }, [genre]);
+
+  useEffect(() => {
+    getFilmBySearch();
+  }, [title]);
 
   return (
     <Col className={styles['films-root']}>
@@ -137,7 +139,7 @@ export const Movies = () => {
         className={styles.modal}
       >
         <Carousel className={styles['modal-main']} dotPosition="bottom">
-          {videoData?.map((item: IVideoItem) => (
+          {movieVideoData.data?.map((item: IVideoItem) => (
             <Col key={item.id} className={styles['modal-sect']}>
               <Col className={styles.titlemodal}>
                 <Title level={3}>{item.name}</Title>

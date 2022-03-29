@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-import { IMovieDataItems } from '../../components/pages/MoviesPage/Movies';
-import { byGenreURL, byQueryURL, topRatedURL, upcomingURL } from './constants';
+import { IMovieDataItems, IVideoItem } from '../../components/pages/MoviesPage/Movies';
+import { byGenreURL, byQueryURL, topRatedURL, upcomingURL, videoURL } from './constants';
 
 export const getFilmByGenreService = async (genre: number): Promise<IMovieDataItems[]> => {
   const data = await axios.get(`${byGenreURL}${genre}`);
@@ -22,6 +22,12 @@ export const getFilmTopRated = async (): Promise<IMovieDataItems[]> => {
 
 export const getFilmUpcoming = async (): Promise<IMovieDataItems[]> => {
   const data = await axios.get(`${upcomingURL}`);
+
+  return data.data.results;
+};
+
+export const getVideoData = async (movieID: string | null | undefined): Promise<IVideoItem[]> => {
+  const data = await axios.get(videoURL(movieID));
 
   return data.data.results;
 };
