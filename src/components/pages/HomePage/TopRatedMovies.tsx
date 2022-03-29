@@ -22,7 +22,7 @@ const TopRatedMovies = () => {
   const topRatedElements = data?.map((item, id) => {
     return (
       <Col className={styles.pattern} key={id}>
-        <Image src={imageURL(item.poster_path)} className={styles.newimg} />
+        <Image src={`${imageURL}${item.poster_path}`} className={styles.newimg} />
       </Col>
     );
   });

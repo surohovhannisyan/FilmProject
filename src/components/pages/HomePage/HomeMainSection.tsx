@@ -40,14 +40,14 @@ const HomeMainSection = () => {
               <Col
                 className={styles['section-background']}
                 style={{
-                  background: `url(${imageURL(item.backdrop_path)})`,
+                  background: `url(${imageURL}${item.backdrop_path})`,
                   backgroundSize: 'cover',
                   backgroundRepeat: 'no-repeat',
                 }}
               ></Col>
               <Col className={styles['section-main']}>
                 <Col className={styles['img-sect']}>
-                  <Image src={imageURL(item.poster_path)} width={'100%'} />
+                  <Image src={`${imageURL}${item.poster_path}`} width={'100%'} />
                 </Col>
                 <Col className={styles['about-sect']}>
                   <Col className={styles.title}>
@@ -56,7 +56,6 @@ const HomeMainSection = () => {
                   <Col className={styles.overview}>
                     <Text>
                       <b>Overview:</b> {item.overview} <br />
-                      <b>Release Date:</b> {item.release_date} <br />
                       <b>Original language:</b> {originalLanguage(item.original_language)} <br />
                       <b>Vote average:</b> {item.vote_average} <br />
                       <b>First air date:</b> {item.first_air_date}
