@@ -1,17 +1,58 @@
-.menumain {
-  .menuitemtext {
-    color: white;
-  }
+.menu-root {
+  .menumain {
+    .menuitemtext {
+      color: wheat;
+    }
 
-  li.login {
-    position: absolute;
-    right: 0;
-    color: green;
-  }
+    li.login {
+      position: absolute;
+      right: 0;
+      color: green;
+    }
 
-  li.logout {
-    position: absolute;
-    right: 0;
-    color: red;
+    li.logout {
+      position: absolute;
+      right: 0;
+      color: red;
+    }
+
+    li.movies,
+    li.home {
+      color: rgb(168 113 10);
+    }
+
+    li.home:hover {
+      background: wheat;
+      color: rgb(168 113 10);
+
+      .menuitemtext {
+        color: rgb(168 113 10);
+      }
+    }
+
+    li.movies:hover {
+      background: wheat;
+      color: rgb(168 113 10);
+
+      .menuitemtext {
+        color: rgb(168 113 10);
+      }
+    }
+
+    li.login:hover {
+      background: wheat;
+
+      .menuitemtext {
+        color: rgb(168 113 10);
+      }
+    }
+
+    li.logout:hover {
+      background: wheat;
+
+      .menuitemtext {
+        color: rgb(168 113 10);
+      }
+    }
   }
 }
