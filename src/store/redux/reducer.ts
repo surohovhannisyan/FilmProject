@@ -9,8 +9,10 @@ import {
   GET_FILM_TOP_RATED_FAILED,
   GET_FILM_UPCOMING,
   GET_FILM_UPCOMING_FAILED,
+  GET_VIDEO_DATA,
+  GET_VIDEO_DATA_FAILED,
 } from './actiontype';
-import { IMovieDataItems } from '../../components/pages/MoviesPage/Movies';
+import { IMovieDataItems, IVideoItem } from '../../components/pages/MoviesPage/Movies';
 
 export interface IReducerState {
   data?: IMovieDataItems[];
@@ -20,6 +22,16 @@ export interface IReducerState {
 export interface IReducerAction {
   type: string;
   payload: IMovieDataItems[];
+}
+
+export interface IVideoReducerState {
+  data?: IVideoItem[];
+  error?: unknown | string;
+}
+
+export interface IVideoReducerAction {
+  type: string;
+  payload: IVideoItem[];
 }
 
 export const state = {
@@ -51,6 +63,17 @@ export const upcomingFilmData: Reducer<IReducerState, IReducerAction> = (state, 
     case GET_FILM_UPCOMING:
       return { ...state, data: action.payload };
     case GET_FILM_UPCOMING_FAILED:
+      return { ...state, error: action.payload };
+    default:
+      return { ...state };
+  }
+};
+
+export const movieVideoData: Reducer<IVideoReducerState, IVideoReducerAction> = (state, action) => {
+  switch (action.type) {
+    case GET_VIDEO_DATA:
+      return { ...state, data: action.payload };
+    case GET_VIDEO_DATA_FAILED:
       return { ...state, error: action.payload };
     default:
       return { ...state };

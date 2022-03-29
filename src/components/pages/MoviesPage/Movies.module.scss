@@ -1,3 +1,30 @@
+.modal {
+  button {
+    border: 1px solid wheat;
+    background: transparent;
+    color: wheat;
+  }
+
+  button:hover {
+    color: rgb(241 194 107);
+    border: 1px solid rgb(241 194 107);
+    cursor: pointer;
+  }
+
+  div {
+    border: none;
+    background: transparent;
+
+    h3 {
+      color: rgb(241 194 107);
+    }
+  }
+
+  div.titlemodal {
+    color: wheat;
+  }
+}
+
 .films-root {
   margin: 5px auto;
 
@@ -14,11 +41,31 @@
   }
 
   input {
-    border: 1px solid #001529;
+    border: 1px solid rgb(240 178 63);
     width: 20%;
     margin: 5px;
     position: absolute;
     right: 0;
+  }
+
+  input:focus {
+    border: 1px solid rgb(240 178 63);
+    box-shadow: 0 0 2px 2px rgb(240 178 63);
+  }
+
+  input:hover {
+    border: 1px solid rgb(240 178 63);
+    box-shadow: 0 0 2px 2px rgb(240 178 63);
+  }
+
+  .table-main th {
+    color: rgb(240 178 63);
+    background: #273847;
+    border-right: 1px solid rgb(240 178 63);
+  }
+
+  .table-main td {
+    border-bottom: 1px solid #273847;
   }
 
   .pattern-main {
@@ -28,16 +75,19 @@
   .watchlater {
     width: 90%;
     margin: 5px;
-    border: 1px solid #001529;
-    box-shadow: 0 0 2px 2px #001529;
+    color: rgb(240 178 63);
+    border: 1px solid rgb(240 178 63);
+    box-shadow: 0 0 1px 1px rgb(240 178 63);
   }
 
   .img-root:hover {
-    background: #0a5397;
+    border-radius: 15px;
+    box-shadow: 0 0 1px 1px rgb(240 178 63);
   }
 
   .img-table {
     width: 100%;
+    border-radius: 15px;
     padding: 5px;
   }
 
@@ -48,14 +98,36 @@
   .select-genre {
     width: 100px;
     margin: 5px;
+    border: 1px solid rgb(240 178 63);
     border-radius: 3px;
+  }
+
+  .select-genre:hover {
+    border-radius: 5px;
+    border: 1px solid rgb(240 178 63);
+    box-shadow: 0 0 2px 2px rgb(240 178 63);
+  }
+
+  .select-genre::after {
+    border-radius: 5px;
+    border: 1px solid rgb(240 178 63);
+    box-shadow: 0 0 2px 2px rgb(240 178 63);
   }
 
   .label-select {
     margin: 5px;
   }
 
+  span.tag {
+    color: rgb(240 178 63);
+    border: 1px solid rgb(240 178 63);
+    background: transparent;
+  }
+
   span.tag:hover {
+    color: rgb(240 178 63);
+    box-shadow: 0 0 1px 1px rgb(240 178 63);
+    border: 1px solid rgb(240 178 63);
     cursor: pointer;
   }
 }
