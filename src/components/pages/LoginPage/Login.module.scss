@@ -1,45 +1,47 @@
+@use '../../../App.scss' as shared;
+
 .login-card {
   width: 100%;
   margin: auto;
   text-align: center;
-  background: #001529;
+  background: shared.$backgroundColor;
   padding: 15px;
   position: absolute;
   height: 100%;
-  border-top: 1px solid rgb(241 194 107);
+  border-top: 1px solid shared.$deepColor;
 
   h4 {
-    color: wheat;
+    color: shared.$mainColor;
   }
 
   input {
     width: 30%;
     border: none;
-    color: wheat;
+    color: shared.$mainColor;
     background: transparent;
-    border-bottom: 1px solid rgb(241 194 107);
+    border-bottom: 1px solid shared.$deepColor;
     margin: 5px auto;
-    caret-color: rgb(241 194 107);
+    caret-color: shared.$deepColor;
   }
 
   input:focus {
-    color: wheat;
-    border-bottom: 1px solid rgb(241 194 107);
+    color: shared.$mainColor;
+    border-bottom: 1px solid shared.$deepColor;
     box-shadow: 0 0 0 0;
   }
 
   input:hover {
-    border-bottom: 1px solid rgb(241 194 107);
+    border-bottom: 1px solid shared.$deepColor;
   }
 
   .label {
     display: block;
-    color: wheat;
+    color: shared.$mainColor;
   }
 
   input:invalid {
     border: none;
-    box-shadow: 1px 1px 3px 3px #fa2d2d;
+    box-shadow: 1px 1px 3px 3px red;
     color: red;
   }
 
@@ -47,30 +49,30 @@
     width: 15%;
     display: block;
     background: transparent;
-    border: 1px solid rgb(241 194 107);
-    color: rgb(241 194 107);
+    border: 1px solid shared.$deepColor;
+    color: shared.$deepColor;
     margin: 10px auto;
   }
 
   button:hover {
-    color: rgb(241 194 107);
+    color: shared.$titleColor;
     background: transparent;
-    border: 1px solid rgb(168 113 10);
-    box-shadow: 0 0 3px 3px rgb(168 113 10);
+    border: 1px solid shared.$deepColor;
+    box-shadow: 0 0 3px 3px shared.$deepColor;
   }
 
   button:focus {
-    color: rgb(241 194 107);
+    color: shared.$titleColor;
     background: transparent;
-    border: 1px solid rgb(168 113 10);
-    box-shadow: 0 0 3px 3px rgb(168 113 10);
+    border: 1px solid shared.$deepColor;
+    box-shadow: 0 0 3px 3px shared.$deepColor;
   }
 
   a {
-    color: rgb(241 194 107);
+    color: shared.$mainColor;
   }
 
   a:hover {
-    color: rgb(168 113 10);
+    color: shared.$deepColor;
   }
 }

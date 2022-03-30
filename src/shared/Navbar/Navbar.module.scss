@@ -1,7 +1,9 @@
+@use '../../App.scss' as shared;
+
 .menu-root {
   .menumain {
     .menuitemtext {
-      color: wheat;
+      color: shared.$mainColor;
     }
 
     li.login {
@@ -18,40 +20,40 @@
 
     li.movies,
     li.home {
-      color: rgb(168 113 10);
+      color: shared.$deepColor;
     }
 
     li.home:hover {
-      background: wheat;
-      color: rgb(168 113 10);
+      background: shared.$mainColor;
+      color: shared.$deepColor;
 
       .menuitemtext {
-        color: rgb(168 113 10);
+        color: shared.$deepColor;
       }
     }
 
     li.movies:hover {
-      background: wheat;
-      color: rgb(168 113 10);
+      background: shared.$mainColor;
+      color: shared.$deepColor;
 
       .menuitemtext {
-        color: rgb(168 113 10);
+        color: shared.$deepColor;
       }
     }
 
     li.login:hover {
-      background: wheat;
+      background: shared.$mainColor;
 
       .menuitemtext {
-        color: rgb(168 113 10);
+        color: shared.$deepColor;
       }
     }
 
     li.logout:hover {
-      background: wheat;
+      background: shared.$mainColor;
 
       .menuitemtext {
-        color: rgb(168 113 10);
+        color: shared.$deepColor;
       }
     }
   }
