@@ -1,3 +1,5 @@
+@use '../../../App.scss' as shared;
+
 .root {
   .carousel-header {
     width: 100%;
@@ -42,13 +44,13 @@
             width: 70%;
             padding: 15px;
             text-align: left;
-            color: white;
+            color: shared.$mainColor;
 
             .title {
               padding: 15px;
 
               h2 {
-                color: rgb(231 184 97);
+                color: shared.$titleColor;
               }
             }
 
@@ -60,7 +62,7 @@
                 color: white;
 
                 b {
-                  color: wheat;
+                  color: shared.$mainColor;
                 }
               }
             }
@@ -69,12 +71,12 @@
               padding: 15px;
 
               h5 {
-                color: wheat;
+                color: shared.$mainColor;
               }
 
               span:hover {
-                color: wheat;
-                border: 1px solid wheat;
+                color: shared.$mainColor;
+                border: 1px solid shared.$mainColor;
                 background: transparent;
                 cursor: pointer;
               }
@@ -85,13 +87,13 @@
 
               button {
                 background: transparent;
-                color: wheat;
-                border: 1px solid wheat;
+                color: shared.$mainColor;
+                border: 1px solid shared.$mainColor;
               }
 
               button:hover {
-                color: rgb(252 183 55);
-                border: 1px solid rgb(252 183 55);
+                color: shared.$deepColor;
+                border: 1px solid shared.$deepColor;
               }
             }
           }

@@ -1,11 +1,13 @@
+@use '../../../App.scss' as shared;
+
 .home-main {
-  background: #273847;
+  background: shared.$tableBackground;
 
   hr {
     width: 100%;
     margin: auto;
     border: 0;
-    box-shadow: 0 0 3px 3px wheat;
+    box-shadow: 0 0 3px 3px shared.$mainColor;
   }
 
   .home-sect {

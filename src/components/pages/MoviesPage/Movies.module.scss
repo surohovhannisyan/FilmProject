@@ -1,13 +1,15 @@
+@use '../../../App.scss' as shared;
+
 .modal {
   button {
-    border: 1px solid wheat;
+    border: 1px solid shared.$mainColor;
     background: transparent;
-    color: wheat;
+    color: shared.$mainColor;
   }
 
   button:hover {
-    color: rgb(241 194 107);
-    border: 1px solid rgb(241 194 107);
+    color: shared.$titleColor;
+    border: 1px solid shared.$titleColor;
     cursor: pointer;
   }
 
@@ -16,12 +18,12 @@
     background: transparent;
 
     h3 {
-      color: rgb(241 194 107);
+      color: shared.$titleColor;
     }
   }
 
   div.titlemodal {
-    color: wheat;
+    color: shared.$mainColor;
   }
 }
 
@@ -41,7 +43,7 @@
   }
 
   input {
-    border: 1px solid rgb(240 178 63);
+    border: 1px solid shared.$deepColor;
     width: 20%;
     margin: 5px;
     position: absolute;
@@ -49,23 +51,23 @@
   }
 
   input:focus {
-    border: 1px solid rgb(240 178 63);
-    box-shadow: 0 0 2px 2px rgb(240 178 63);
+    border: 1px solid shared.$deepColor;
+    box-shadow: 0 0 2px 2px shared.$deepColor;
   }
 
   input:hover {
-    border: 1px solid rgb(240 178 63);
-    box-shadow: 0 0 2px 2px rgb(240 178 63);
+    border: 1px solid shared.$deepColor;
+    box-shadow: 0 0 2px 2px shared.$deepColor;
   }
 
   .table-main th {
-    color: rgb(240 178 63);
-    background: #273847;
-    border-right: 1px solid rgb(240 178 63);
+    color: shared.$titleColor;
+    background: shared.$tableBackground;
+    border-right: 1px solid shared.$deepColor;
   }
 
   .table-main td {
-    border-bottom: 1px solid #273847;
+    border-bottom: 1px solid shared.$tableBackground;
   }
 
   .pattern-main {
@@ -75,14 +77,14 @@
   .watchlater {
     width: 90%;
     margin: 5px;
-    color: rgb(240 178 63);
-    border: 1px solid rgb(240 178 63);
-    box-shadow: 0 0 1px 1px rgb(240 178 63);
+    color: shared.$deepColor;
+    border: 1px solid shared.$deepColor;
+    box-shadow: 0 0 1px 1px shared.$deepColor;
   }
 
   .img-root:hover {
     border-radius: 15px;
-    box-shadow: 0 0 1px 1px rgb(240 178 63);
+    box-shadow: 0 0 1px 1px shared.$deepColor;
   }
 
   .img-table {
@@ -98,20 +100,20 @@
   .select-genre {
     width: 100px;
     margin: 5px;
-    border: 1px solid rgb(240 178 63);
+    border: 1px solid shared.$deepColor;
     border-radius: 3px;
   }
 
   .select-genre:hover {
     border-radius: 5px;
-    border: 1px solid rgb(240 178 63);
-    box-shadow: 0 0 2px 2px rgb(240 178 63);
+    border: 1px solid shared.$deepColor;
+    box-shadow: 0 0 2px 2px shared.$deepColor;
   }
 
   .select-genre::after {
     border-radius: 5px;
-    border: 1px solid rgb(240 178 63);
-    box-shadow: 0 0 2px 2px rgb(240 178 63);
+    border: 1px solid shared.$deepColor;
+    box-shadow: 0 0 2px 2px shared.$deepColor;
   }
 
   .label-select {
@@ -119,15 +121,15 @@
   }
 
   span.tag {
-    color: rgb(240 178 63);
-    border: 1px solid rgb(240 178 63);
+    color: shared.$deepColor;
+    border: 1px solid shared.$deepColor;
     background: transparent;
   }
 
   span.tag:hover {
-    color: rgb(240 178 63);
-    box-shadow: 0 0 1px 1px rgb(240 178 63);
-    border: 1px solid rgb(240 178 63);
+    color: shared.$deepColor;
+    box-shadow: 0 0 1px 1px shared.$deepColor;
+    border: 1px solid shared.$deepColor;
     cursor: pointer;
   }
 }
