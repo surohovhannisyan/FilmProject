@@ -8,6 +8,8 @@ import {
   GET_FILM_TOP_RATED_FAILED,
   GET_FILM_UPCOMING,
   GET_FILM_UPCOMING_FAILED,
+  GET_MOVIES_POPULAR,
+  GET_MOVIES_POPULAR_FAILED,
   GET_VIDEO_DATA,
   GET_VIDEO_DATA_FAILED,
 } from './actiontype';
@@ -16,6 +18,7 @@ import {
   getFilmByQueryService,
   getFilmTopRated,
   getFilmUpcoming,
+  getTvShowPopular,
   getVideoData,
 } from './services';
 
@@ -26,6 +29,30 @@ interface IDispatch {
 interface IVideoDispatch {
   (arg: { type: string; payload: IVideoItem[] | { data: null; error: unknown } }): void;
 }
+
+export const getMoviesPopular = () => {
+  return async (dispatch: IDispatch) => {
+    try {
+      const response = await getTvShowPopular();
+      dispatch(getPopular(response));
+    } catch (error) {
+      dispatch(getPopularFailed(error));
+    }
+  };
+
+  function getPopular(data: IMovieDataItems[]) {
+    return {
+      type: GET_MOVIES_POPULAR,
+      payload: data,
+    };
+  }
+  function getPopularFailed(error: string | unknown) {
+    return {
+      type: GET_MOVIES_POPULAR_FAILED,
+      payload: { data: null, error: error },
+    };
+  }
+};
 
 export const getMovieVideoData = (movieID: string | null | undefined) => {
   return async (dispatch: IVideoDispatch) => {
@@ -43,7 +70,6 @@ export const getMovieVideoData = (movieID: string | null | undefined) => {
       payload: data,
     };
   }
-
   function getVideoFailed(error: string | unknown) {
     return {
       type: GET_VIDEO_DATA_FAILED,

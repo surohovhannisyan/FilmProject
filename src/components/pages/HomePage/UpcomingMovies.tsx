@@ -4,57 +4,54 @@ import { Col, Row, Carousel, Typography, Image } from 'antd';
 
 import { RootState } from '../../../Reducers';
 import { getFilmDataTopRated } from '../../../store/redux/action';
+import { imageURL } from './home.constants';
 
 import styles from './UpcomingMovies.module.scss';
 
-const { Title, Text } = Typography;
+const { Title } = Typography;
 
 const UpcomingMovies = () => {
   const { data } = useSelector((state: RootState) => state.upcomingFilms);
   const dispatch = useDispatch();
 
-  const imageURL = (path: string) => {
-    return `https://image.tmdb.org/t/p/w500/${path}`;
-  };
-
   const getFilmInfo = () => {
     dispatch(getFilmDataTopRated());
   };
+
+  const upcomingElements = data?.map((item, id) => {
+    return (
+      <Col className={styles.pattern} key={id}>
+        <Image src={`${imageURL}${item.poster_path}`} className={styles.newimg} />
+      </Col>
+    );
+  });
 
   useEffect(() => {
     getFilmInfo();
   }, []);
 
   return (
-    <Col className={styles['upcoming-main']}>
-      <Col>
-        <Title level={3} className={styles['title-two']}>
-          Upcoming
+    <Col className={styles['upcoming-wrapper']}>
+      <Col className={styles.titlewrapper}>
+        <Title level={3} className={styles.movietitle}>
+          Upcoming Movies
         </Title>
       </Col>
-      <Carousel dotPosition="top" autoplay className={styles['carousel-upcoming']}>
-        {data?.map((item) => (
-          <Row className={styles['row-upcoming']} key={item.id}>
-            <Col className={styles['col-upcoming-in']}>
-              <Col className={styles['upcoming-main']}>
-                <Title level={4}>Title: {item.original_title}</Title>
-                <hr />
-                <Text>
-                  Release Date: {item.release_date} <br />
-                  Original language: {item.original_language} <br />
-                  Vote average: {item.vote_average} <br />
-                </Text>
-                <hr />
-                <Col>
-                  <Text strong>Overview:</Text> {item.overview}
-                </Col>
-              </Col>
-              <Col className={styles['upcoming-pattern']}>
-                <Image src={imageURL(item.poster_path)} />
-              </Col>
+      <Carousel autoplay dots={false} className={styles['carousel-upcoming']}>
+        <Row>
+          <Col className={styles.wrapper}>
+            <Col className={styles['wrapper-pattern']}>
+              {upcomingElements && upcomingElements.slice(0, 10)}
             </Col>
-          </Row>
-        ))}
+          </Col>
+        </Row>
+        <Row>
+          <Col className={styles.wrapper}>
+            <Col className={styles['wrapper-pattern']}>
+              {upcomingElements && upcomingElements.slice(10, 20)}
+            </Col>
+          </Col>
+        </Row>
       </Carousel>
     </Col>
   );

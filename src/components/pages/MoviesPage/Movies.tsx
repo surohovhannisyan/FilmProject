@@ -17,6 +17,8 @@ import styles from './Movies.module.scss';
 import 'antd/dist/antd.css';
 
 export interface IMovieDataItems {
+  first_air_date: string;
+  name: string;
   adult: boolean;
   backdrop_path: string;
   genre_ids: number[];
